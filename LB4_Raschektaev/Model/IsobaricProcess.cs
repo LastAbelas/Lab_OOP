@@ -10,7 +10,7 @@ namespace Model
     /// Класс описывающий работу изобарного процесса
     /// </summary>
     [Serializable]
-    public class IsobaricProcess : ProcessBase
+    public class IsobaricProcess : IProcessBase
     {
         /// <summary>
         /// Универсальная гаовая постоянная
@@ -36,19 +36,6 @@ namespace Model
         /// конечная температура
         /// </summary>
         private double _finalTemperature;
-
-        /// <summary>
-        /// Поле типа процесса 
-        /// </summary>
-        private string _typeProcesses;
-
-        /// <summary>
-        /// Свойство вида процесса
-        /// </summary>
-        public string TypeProcess
-        {
-            set => _typeProcesses = value;
-        }
 
         /// <summary>
         /// Свойство Начальной температуры
@@ -117,17 +104,17 @@ namespace Model
         {
             get
             {
-                return Math.Abs((GasMass * GASCONSTANT * (FinalTemperature -
-                    InitialTemperature) / MolarMass));
+                return Math.Abs(Math.Round((GasMass * GASCONSTANT * (FinalTemperature -
+                    InitialTemperature) / MolarMass)));
             }
         }
 
         /// <summary>
         /// Имя
         /// </summary>
-        public string NameProcess
+        public ProcessName NameProcess
         {
-            get => "IsobaricProcess";
+            get => ProcessName.IsobaricProcess;
         }
 
         /// <summary>
@@ -184,9 +171,9 @@ namespace Model
         {
             get
             {
-                string buffer = $"InitialTemperature = {InitialTemperature}"+
-                    $"FinalTemperature = {FinalTemperature}"
-                    +$"GasMass = {GasMass}"+ $"MolarMass = {MolarMass}";
+                string buffer = $"InitialTemperature = {InitialTemperature}, "+
+                    $"FinalTemperature = {FinalTemperature}, "
+                    +$"GasMass = {GasMass}, "+ $"MolarMass = {MolarMass}";
                 return buffer;
             }
         }

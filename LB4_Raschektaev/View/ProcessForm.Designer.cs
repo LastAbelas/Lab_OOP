@@ -33,12 +33,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProcessForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridViewProcessesWork = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.RandomProcess = new System.Windows.Forms.Button();
+            this.RemoveProcessButton = new System.Windows.Forms.Button();
+            this.AddProcessButton = new System.Windows.Forms.Button();
+            this.FindProcessButton = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.LoadButton = new System.Windows.Forms.Button();
+            this.RandomProcessButton = new System.Windows.Forms.Button();
+            this.ResizeButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProcessesWork)).BeginInit();
             this.SuspendLayout();
@@ -58,19 +59,21 @@
             // 
             this.dataGridViewProcessesWork.AllowUserToAddRows = false;
             this.dataGridViewProcessesWork.AllowUserToDeleteRows = false;
+            this.dataGridViewProcessesWork.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewProcessesWork.BackgroundColor = System.Drawing.Color.Black;
+            this.dataGridViewProcessesWork.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridViewProcessesWork.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            this.dataGridViewProcessesWork.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewProcessesWork.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridViewProcessesWork.Cursor = System.Windows.Forms.Cursors.IBeam;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Book Antiqua", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewProcessesWork.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewProcessesWork.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewProcessesWork.EnableHeadersVisualStyles = false;
             this.dataGridViewProcessesWork.GridColor = System.Drawing.Color.Black;
             this.dataGridViewProcessesWork.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewProcessesWork.Name = "dataGridViewProcessesWork";
@@ -78,7 +81,7 @@
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -89,77 +92,89 @@
             this.dataGridViewProcessesWork.TabIndex = 0;
             this.dataGridViewProcessesWork.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProcessesWork_CellContentClick);
             // 
-            // button2
+            // RemoveProcessButton
             // 
-            this.button2.BackColor = System.Drawing.Color.Black;
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(24, 310);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(143, 25);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Remove Process";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.Delete_Click);
+            this.RemoveProcessButton.BackColor = System.Drawing.Color.Black;
+            this.RemoveProcessButton.ForeColor = System.Drawing.Color.White;
+            this.RemoveProcessButton.Location = new System.Drawing.Point(24, 310);
+            this.RemoveProcessButton.Name = "RemoveProcessButton";
+            this.RemoveProcessButton.Size = new System.Drawing.Size(143, 25);
+            this.RemoveProcessButton.TabIndex = 2;
+            this.RemoveProcessButton.Text = "Remove Process";
+            this.RemoveProcessButton.UseVisualStyleBackColor = false;
+            this.RemoveProcessButton.Click += new System.EventHandler(this.Delete_Click);
             // 
-            // button3
+            // AddProcessButton
             // 
-            this.button3.BackColor = System.Drawing.Color.Black;
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(24, 278);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(143, 26);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Add Process";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.Add_Click);
+            this.AddProcessButton.BackColor = System.Drawing.Color.Black;
+            this.AddProcessButton.ForeColor = System.Drawing.Color.White;
+            this.AddProcessButton.Location = new System.Drawing.Point(24, 278);
+            this.AddProcessButton.Name = "AddProcessButton";
+            this.AddProcessButton.Size = new System.Drawing.Size(143, 26);
+            this.AddProcessButton.TabIndex = 3;
+            this.AddProcessButton.Text = "Add Process";
+            this.AddProcessButton.UseVisualStyleBackColor = false;
+            this.AddProcessButton.Click += new System.EventHandler(this.Add_Click);
             // 
-            // button1
+            // FindProcessButton
             // 
-            this.button1.BackColor = System.Drawing.Color.Black;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(24, 341);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(143, 25);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Find Process";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.SearchButton_Click);
+            this.FindProcessButton.BackColor = System.Drawing.Color.Black;
+            this.FindProcessButton.ForeColor = System.Drawing.Color.White;
+            this.FindProcessButton.Location = new System.Drawing.Point(24, 341);
+            this.FindProcessButton.Name = "FindProcessButton";
+            this.FindProcessButton.Size = new System.Drawing.Size(143, 25);
+            this.FindProcessButton.TabIndex = 5;
+            this.FindProcessButton.Text = "Find Process";
+            this.FindProcessButton.UseVisualStyleBackColor = false;
+            this.FindProcessButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
-            // button4
+            // SaveButton
             // 
-            this.button4.BackColor = System.Drawing.Color.Black;
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(173, 279);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(150, 40);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Save Processes";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.Save_Click);
+            this.SaveButton.BackColor = System.Drawing.Color.Black;
+            this.SaveButton.ForeColor = System.Drawing.Color.White;
+            this.SaveButton.Location = new System.Drawing.Point(173, 279);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(150, 40);
+            this.SaveButton.TabIndex = 6;
+            this.SaveButton.Text = "Save Processes";
+            this.SaveButton.UseVisualStyleBackColor = false;
+            this.SaveButton.Click += new System.EventHandler(this.Save_Click);
             // 
-            // button5
+            // LoadButton
             // 
-            this.button5.BackColor = System.Drawing.Color.Black;
-            this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(173, 326);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(150, 40);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "Load Processes";
-            this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.Load_Click);
+            this.LoadButton.BackColor = System.Drawing.Color.Black;
+            this.LoadButton.ForeColor = System.Drawing.Color.White;
+            this.LoadButton.Location = new System.Drawing.Point(173, 326);
+            this.LoadButton.Name = "LoadButton";
+            this.LoadButton.Size = new System.Drawing.Size(150, 40);
+            this.LoadButton.TabIndex = 7;
+            this.LoadButton.Text = "Load Processes";
+            this.LoadButton.UseVisualStyleBackColor = false;
+            this.LoadButton.Click += new System.EventHandler(this.Load_Click);
             // 
-            // RandomProcess
+            // RandomProcessButton
             // 
-            this.RandomProcess.BackColor = System.Drawing.Color.Black;
-            this.RandomProcess.ForeColor = System.Drawing.Color.White;
-            this.RandomProcess.Location = new System.Drawing.Point(24, 18);
-            this.RandomProcess.Name = "RandomProcess";
-            this.RandomProcess.Size = new System.Drawing.Size(299, 27);
-            this.RandomProcess.TabIndex = 12;
-            this.RandomProcess.Text = "RandomProcess";
-            this.RandomProcess.UseVisualStyleBackColor = false;
-            this.RandomProcess.Click += new System.EventHandler(this.Random_Click);
+            this.RandomProcessButton.BackColor = System.Drawing.Color.Black;
+            this.RandomProcessButton.ForeColor = System.Drawing.Color.White;
+            this.RandomProcessButton.Location = new System.Drawing.Point(24, 18);
+            this.RandomProcessButton.Name = "RandomProcessButton";
+            this.RandomProcessButton.Size = new System.Drawing.Size(299, 27);
+            this.RandomProcessButton.TabIndex = 12;
+            this.RandomProcessButton.Text = "RandomProcess";
+            this.RandomProcessButton.UseVisualStyleBackColor = false;
+            this.RandomProcessButton.Click += new System.EventHandler(this.Random_Click);
+            // 
+            // ResizeButton
+            // 
+            this.ResizeButton.BackColor = System.Drawing.Color.Black;
+            this.ResizeButton.ForeColor = System.Drawing.Color.White;
+            this.ResizeButton.Location = new System.Drawing.Point(24, 372);
+            this.ResizeButton.Name = "ResizeButton";
+            this.ResizeButton.Size = new System.Drawing.Size(299, 27);
+            this.ResizeButton.TabIndex = 13;
+            this.ResizeButton.Text = "Resize";
+            this.ResizeButton.UseVisualStyleBackColor = false;
+            this.ResizeButton.Click += new System.EventHandler(this.Resize_Click);
             // 
             // ProcessForm
             // 
@@ -167,13 +182,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(352, 396);
-            this.Controls.Add(this.RandomProcess);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.ClientSize = new System.Drawing.Size(352, 418);
+            this.Controls.Add(this.ResizeButton);
+            this.Controls.Add(this.RandomProcessButton);
+            this.Controls.Add(this.LoadButton);
+            this.Controls.Add(this.SaveButton);
+            this.Controls.Add(this.FindProcessButton);
+            this.Controls.Add(this.AddProcessButton);
+            this.Controls.Add(this.RemoveProcessButton);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ForeColor = System.Drawing.Color.Black;
@@ -194,12 +210,13 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dataGridViewProcessesWork;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button RandomProcess;
+        private System.Windows.Forms.Button RemoveProcessButton;
+        private System.Windows.Forms.Button AddProcessButton;
+        private System.Windows.Forms.Button FindProcessButton;
+        private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.Button LoadButton;
+        private System.Windows.Forms.Button RandomProcessButton;
+        private System.Windows.Forms.Button ResizeButton;
     }
 }
 

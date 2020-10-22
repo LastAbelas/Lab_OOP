@@ -10,7 +10,7 @@ namespace Model
     /// Класс описывающий работу изотермического процесса
     /// </summary>
     [Serializable]
-    public class IsothermalProcess : ProcessBase
+    public class IsothermalProcess : IProcessBase
     {
         /// <summary>
         /// Начальный объем
@@ -36,19 +36,6 @@ namespace Model
         /// молярная масса
         /// </summary>
         private double _molarMass;
-
-        /// <summary>
-        /// Поле типа процесса 
-        /// </summary>
-        private string _typeProcesses;
-
-        /// <summary>
-        /// Свойство вида процесса
-        /// </summary>
-        public string TypeProcess
-        {
-            set => _typeProcesses = value;
-        }
 
         /// <summary>
         /// Свойство начального объема
@@ -131,6 +118,7 @@ namespace Model
                 _temperature = Checker.CheckTemperature(value);
             }
         }
+
         /// <summary>
         /// Расчет работы изотермы
         /// </summary>
@@ -138,18 +126,18 @@ namespace Model
         {
             get
             {
-                return Math.Abs((GasMass * GASCONSTANT * Temperature *
+                return Math.Abs(Math.Round((GasMass * GASCONSTANT * Temperature *
                                  Math.Log(FinalVolume / InitialVolume))
-                                 / MolarMass);
+                                 / MolarMass));
             }
         }
 
         /// <summary>
         /// Имя
         /// </summary>
-        public string NameProcess
+        public ProcessName NameProcess
         {
-            get => "IsothermalProcess";
+            get => ProcessName.IsothermalProcess;
         }
 
         /// <summary>
@@ -209,10 +197,10 @@ namespace Model
         {
             get
             {
-                string buffer = $"GasMass = {GasMass}"+
-                    $"Temperature = {Temperature}"+
-                    $"InitialVolume = {InitialVolume}"+
-                    $"FinalVolume = {FinalVolume}"+ 
+                string buffer = $"GasMass = {GasMass}, "+
+                    $"Temperature = {Temperature}, "+
+                    $"InitialVolume = {InitialVolume}, "+
+                    $"FinalVolume = {FinalVolume}, "+ 
                     $"MolarMass = {MolarMass}";
                 return buffer;
             }

@@ -16,12 +16,12 @@ namespace View
         /// <summary>
         /// Лист процессов
         /// </summary>
-        private BindingList<ProcessBase> _process;
+        private BindingList<IProcessBase> _process;
 
         /// <summary>
         /// Инициализация формы
         /// </summary>
-        public SearchProcesses(BindingList<ProcessBase> process)
+        public SearchProcesses(BindingList<IProcessBase> process)
         {
             InitializeComponent();
 
@@ -32,8 +32,8 @@ namespace View
         /// <summary>
         /// Отфильтрованный список
         /// </summary>
-        private BindingList<ProcessBase> _processeFilter
-            = new BindingList<ProcessBase>();
+        private BindingList<IProcessBase> _processeFilter
+            = new BindingList<IProcessBase>();
 
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace View
             MethodsForAllForms.LoadGrid(
                 dataGridViewProcess, _processeFilter);
 
-            SearchByName.Checked = true;
+            SearchByNameLabel.Checked = true;
         }
 
         /// <summary>
@@ -66,23 +66,22 @@ namespace View
         {
             _processeFilter.Clear();
 
-            if (SearchByName.Checked)
+            if (SearchByNameLabel.Checked)
             {
                 StartSearchName();
             }
-            else if (SearchEqualWork.Checked)
+            else if (SearchEqualWorkLabel.Checked)
             {
                 StartSearchWorkEqual();
             }
-            else if (SearchLessWork.Checked)
+            else if (SearchLessWorkLabel.Checked)
             {
                 StartSearchAWorkLess();
             }
-            else if (SearchGreaterWork.Checked)
+            else if (SearchGreaterWorkLabel.Checked)
             {
                 StartSearchWorkGreater();
             }
-
         }
 
         /// <summary>
@@ -94,7 +93,7 @@ namespace View
             {
                 foreach (var row in _process)
                 {
-                    if (row.NameProcess == textBoxParameter.Text)
+                    if (row.NameProcess.ToString() == textBoxParameter.Text)
                     {
                         _processeFilter.Add(row);
                     }
@@ -111,6 +110,7 @@ namespace View
         /// </summary>
         private void StartSearchWorkEqual()
         {
+            textBoxParameter.Text = textBoxParameter.Text.Replace(".", ",");
             try
             {
                 foreach (var row in _process)
@@ -126,15 +126,16 @@ namespace View
             }
             catch (Exception exception)
             {
-                MessageBox.Show($"{exception}\nEnter the string!");
+                MessageBox.Show($"{exception}\nEnter the number!");
             }
         }
 
         /// <summary>
         /// Поиск меньше
         /// </summary>
-        private void StartSearchAWorkLess()
+        private void StartSearchWorkGreater()
         {
+            textBoxParameter.Text = textBoxParameter.Text.Replace(".", ",");
             try
             {
                 foreach (var row in _process)
@@ -147,15 +148,16 @@ namespace View
             }
             catch (Exception exception)
             {
-                MessageBox.Show($"{exception}\nEnter the string!");
+                MessageBox.Show($"{exception}\nEnter the number!");
             }
         }
 
         /// <summary>
         /// Поиск больше
         /// </summary>
-        private void StartSearchWorkGreater()
+        private void StartSearchAWorkLess()
         {
+            textBoxParameter.Text = textBoxParameter.Text.Replace(".", ",");
             try
             {
                 foreach (var row in _process)
@@ -168,13 +170,43 @@ namespace View
             }
             catch (Exception exception)
             {
-                MessageBox.Show($"{exception}\nEnter the string!");
+                MessageBox.Show($"{exception}\nEnter the number!");
             }
         }
 
+        /// <summary>
+        ///  Кнопка поиск
+        /// </summary>
         private void SearchALL_Click(object sender, EventArgs e)
         {
-            StartSearch();
+            if (textBoxParameter.Text == "")
+            {
+                MessageBox.Show("Please enter something");
+            }
+            else 
+            {
+                StartSearch();
+            }
+        }
+
+        /// <summary>
+        ///  Кнопка расширения формы
+        /// </summary>
+        private void Resize_Click(object sender, EventArgs e)
+        {
+            var fallPoint = MethodsForAllForms.FallPointsSearch(
+                dataGridViewProcess);
+            this.Width = 50 + fallPoint;
+            int buffer = dataGridViewProcess.Width;
+            dataGridViewProcess.Width = fallPoint;
+            SearchALLButton.Width = SearchALLButton.Width +
+                dataGridViewProcess.Width - buffer;
+            ResizeButton.Width = ResizeButton.Width +
+                dataGridViewProcess.Width - buffer;
+            textBoxParameter.Width = textBoxParameter.Width +
+                dataGridViewProcess.Width - buffer;
+            this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            fallPoint = 0;
         }
     }
 }

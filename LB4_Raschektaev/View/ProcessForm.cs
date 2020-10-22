@@ -44,13 +44,15 @@ namespace View
         /// <summary>
         /// Основной лист процессов
         /// </summary>
-        private static BindingList<ProcessBase> _process =
-            new BindingList<ProcessBase>();
+        private BindingList<IProcessBase> _process =
+            new BindingList<IProcessBase>();
 
+        /// <summary>
+        /// dataGridView
+        /// </summary>
         private void dataGridViewProcessesWork_CellContentClick
             (object sender, DataGridViewCellEventArgs e)
         {
-            
         }
 
         /// <summary>
@@ -62,7 +64,6 @@ namespace View
             saveFileDialog.Filter = "processeswork" +
                     "(*.pro)|*.pro|All files (*.*)|*.*";
             saveFileDialog.AddExtension = true;
-            saveFileDialog.DefaultExt = "txt";
             saveFileDialog.Title = "Save Processes Information";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -87,10 +88,6 @@ namespace View
             MethodsForAllForms.LoadGrid(dataGridViewProcessesWork, _process);
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
         /// <summary>
         /// Загрузка файла
         /// </summary>
@@ -113,7 +110,7 @@ namespace View
                         using (var fileStream = new FileStream(
                             filePath, FileMode.OpenOrCreate))
                         {
-                            var newprocess = (BindingList<ProcessBase>)
+                            var newprocess = (BindingList<IProcessBase>)
                                 forbinary.Deserialize(fileStream);
 
                             _process.Clear();
@@ -122,7 +119,6 @@ namespace View
                             {
                                 _process.Add(process);
                             }
-
                             MessageBox.Show("file uploaded successfully!");
                         }
                     }
@@ -170,6 +166,9 @@ namespace View
             }
         }
 
+        /// <summary>
+        /// Удалить процесс
+        /// </summary>
         private void Delete_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow processDelete in dataGridViewProcessesWork.SelectedRows)
@@ -208,6 +207,30 @@ namespace View
         {
             var search = new SearchProcesses(_process);
             search.ShowDialog();
+        }
+
+        /// <summary>
+        ///  Кнопка расширения формы
+        /// </summary>
+        private void Resize_Click(object sender, EventArgs e)
+        {
+            var fallPoint = MethodsForAllForms.FallPointsSearch(
+               dataGridViewProcessesWork);
+            this.Width = 65 + fallPoint;
+            int buffer = dataGridViewProcessesWork.Width;
+            dataGridViewProcessesWork.Width = fallPoint;
+            RandomProcessButton.Width = RandomProcessButton.Width +
+                dataGridViewProcessesWork.Width - buffer;
+            ResizeButton.Width = ResizeButton.Width +
+                dataGridViewProcessesWork.Width - buffer;
+            SaveButton.Width = SaveButton.Width +
+                dataGridViewProcessesWork.Width - buffer;
+            LoadButton.Width = LoadButton.Width +
+                dataGridViewProcessesWork.Width - buffer;
+            groupBox1.Width = groupBox1.Width +
+                dataGridViewProcessesWork.Width - buffer;
+            this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            fallPoint = 0;
         }
     }
 }

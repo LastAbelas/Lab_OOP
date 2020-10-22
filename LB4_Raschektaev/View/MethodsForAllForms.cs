@@ -21,7 +21,7 @@ namespace View
         /// <param name="dataGridView">таблица</param>
         /// <param name="bindingList">лист фигур</param>
         public static void LoadGrid(DataGridView dataGridView,
-            BindingList<ProcessBase> bindingList)
+            BindingList<IProcessBase> bindingList)
         {
             dataGridView.ScrollBars = ScrollBars.None;
             dataGridView.AutoGenerateColumns = false;
@@ -50,5 +50,21 @@ namespace View
 
             dataGridView.Columns.AddRange(columns);
         }
+
+        /// <summary>
+        /// Вспомогательный метод определения изменения ширины формы
+        /// </summary>
+        /// <param name="dataGridView">таблица</param>
+        /// <returns>изменение</returns>
+        public static int FallPointsSearch(DataGridView dataGridView)
+        {
+            int fallPoints = 0;
+            foreach (DataGridViewColumn r in dataGridView.Columns)
+            {
+                fallPoints += r.Width;
+            }
+            return fallPoints;
+        }
+
     }
 }

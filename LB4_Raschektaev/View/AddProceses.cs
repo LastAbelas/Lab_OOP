@@ -24,17 +24,17 @@ namespace View
         /// <summary>
         /// Лист 
         /// </summary>
-        private BindingList<ProcessBase> _process;
+        private BindingList<IProcessBase> _process;
 
         /// <summary>
         /// Выбранный процесс
         /// </summary>
-        private ProcessBase _classprocess;
+        private IProcessBase _classprocess;
 
         /// <summary>
         /// Иниицаилизация процессов
         /// </summary>
-        public AddProceses(BindingList<ProcessBase> process)
+        public AddProceses(BindingList<IProcessBase> process)
         {
             InitializeComponent();
             _process = process;
@@ -49,11 +49,9 @@ namespace View
         {
             _processItemsList = new List<string>();
             //TODO: убрать нафик - убрал нафиг
-            TypeProcess.Items.Add("AdiabaticProcess");
-            TypeProcess.Items.Add("IsobaricProcess");
-            TypeProcess.Items.Add("IsothermalProcess");
-            //TypeProcess.DataSource = _processItemsList;
-            //TypeProcess.DisplayMember = "NameProcess";
+            TypeProcessComboBox.Items.Add(ProcessName.AdiabaticProcess);
+            TypeProcessComboBox.Items.Add(ProcessName.IsobaricProcess);
+            TypeProcessComboBox.Items.Add(ProcessName.IsothermalProcess);
         }
 
         /// <summary>
@@ -74,86 +72,81 @@ namespace View
         /// <param name="e"></param>
         private void TypeProcess_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            
-            _classprocess = TypeProcess.SelectedItem as 
-                ProcessBase;
-
             labelResult.Visible = true;
             textBoxResult.Visible = true;
             buttonFindWork.Visible = true;
-            switch (TypeProcess.SelectedItem.ToString())
+            switch (TypeProcessComboBox.SelectedItem)
             {
-                case "AdiabaticProcess":
-                    {
-                        _classprocess = new AdiabaticProcess();
-                        labelPressure.Visible = true;
-                        maskedTextBoxPressure.Visible = true;
-                        maskedTextBoxHeatCapacityRatio.Visible = true;
-                        labelHeatCapacityRatio.Visible = true;
-                        InitialVolumeLabel.Visible = true;
-                        InitialVolumeTextBox.Visible = true;
-                        labelFinalVolume.Visible = true;
-                        maskedTextBoxFinalVolume.Visible = true;
-                        labelGasMass.Visible = false;
-                        maskedTextBoxGasMass.Visible = false;
-                        labelMolarMass.Visible = false;
-                        maskedTextBoxMolarMass.Visible = false;
-                        labelTemperature.Visible = false;
-                        maskedTextBoxlabelTemperature.Visible = false;
-                        labelInitialTemperature.Visible = false;
-                        labelFinalTemperature.Visible = false;
-                        maskedTextBoxInitialTemperature.Visible = false;
-                        maskedTextBoxFinalTemperature.Visible = false;
-                        break;
-                    }
-                case "IsobaricProcess":
-                    {
-                        _classprocess = new IsobaricProcess();
-                        labelInitialTemperature.Visible = true;
-                        labelFinalTemperature.Visible = true;
-                        maskedTextBoxInitialTemperature.Visible = true;
-                        maskedTextBoxFinalTemperature.Visible = true;
-                        labelGasMass.Visible = true;
-                        maskedTextBoxGasMass.Visible = true;
-                        labelMolarMass.Visible = true;
-                        maskedTextBoxMolarMass.Visible = true;
-                        labelPressure.Visible = false;
-                        maskedTextBoxPressure.Visible = false;
-                        maskedTextBoxHeatCapacityRatio.Visible = false;
-                        labelHeatCapacityRatio.Visible = false;
-                        InitialVolumeLabel.Visible = false;
-                        InitialVolumeTextBox.Visible = false;
-                        labelFinalVolume.Visible = false;
-                        maskedTextBoxFinalVolume.Visible = false;
-                        labelTemperature.Visible = false;
-                        maskedTextBoxlabelTemperature.Visible = false;
-                        break;
-                    }
-                case "IsothermalProcess":
-                    {
-                        _classprocess = new IsothermalProcess();
-                        labelGasMass.Visible = true;
-                        maskedTextBoxGasMass.Visible = true;
-                        labelMolarMass.Visible = true;
-                        maskedTextBoxMolarMass.Visible = true;
-                        InitialVolumeLabel.Visible = true;
-                        InitialVolumeTextBox.Visible = true;
-                        labelFinalVolume.Visible = true;
-                        maskedTextBoxFinalVolume.Visible = true;
-                        labelTemperature.Visible = true;
-                        maskedTextBoxlabelTemperature.Visible = true;
-                        labelInitialTemperature.Visible = true;
-                        labelFinalTemperature.Visible = true;
-                        maskedTextBoxInitialTemperature.Visible = false;
-                        maskedTextBoxFinalTemperature.Visible = false; ;
-                        maskedTextBoxHeatCapacityRatio.Visible = false;
-                        labelHeatCapacityRatio.Visible = false;
-                        labelPressure.Visible = false;
-                        maskedTextBoxPressure.Visible = false;
-                        break;
-                    }
+                case ProcessName.AdiabaticProcess:
+                {
+                    _classprocess = new AdiabaticProcess();
+                    labelPressure.Visible = true;
+                    maskedTextBoxPressure.Visible = true;
+                    maskedTextBoxHeatCapacityRatio.Visible = true;
+                    labelHeatCapacityRatio.Visible = true;
+                    InitialVolumeLabel.Visible = true;
+                    InitialVolumeTextBox.Visible = true;
+                    labelFinalVolume.Visible = true;
+                    maskedTextBoxFinalVolume.Visible = true;
+                    labelGasMass.Visible = false;
+                    maskedTextBoxGasMass.Visible = false;
+                    labelMolarMass.Visible = false;
+                    maskedTextBoxMolarMass.Visible = false;
+                    labelTemperature.Visible = false;
+                    maskedTextBoxlabelTemperature.Visible = false;
+                    labelInitialTemperature.Visible = false;
+                    labelFinalTemperature.Visible = false;
+                    maskedTextBoxInitialTemperature.Visible = false;
+                    maskedTextBoxFinalTemperature.Visible = false;
+                    break;
+                }
+                case ProcessName.IsobaricProcess:
+                {
+                    _classprocess = new IsobaricProcess();
+                    labelInitialTemperature.Visible = true;
+                    labelFinalTemperature.Visible = true;
+                    maskedTextBoxInitialTemperature.Visible = true;
+                    maskedTextBoxFinalTemperature.Visible = true;
+                    labelGasMass.Visible = true;
+                    maskedTextBoxGasMass.Visible = true;
+                    labelMolarMass.Visible = true;
+                    maskedTextBoxMolarMass.Visible = true;
+                    labelPressure.Visible = false;
+                    maskedTextBoxPressure.Visible = false;
+                    maskedTextBoxHeatCapacityRatio.Visible = false;
+                    labelHeatCapacityRatio.Visible = false;
+                    InitialVolumeLabel.Visible = false;
+                    InitialVolumeTextBox.Visible = false;
+                    labelFinalVolume.Visible = false;
+                    maskedTextBoxFinalVolume.Visible = false;
+                    labelTemperature.Visible = false;
+                    maskedTextBoxlabelTemperature.Visible = false;
+                    break;
+                }
+                case ProcessName.IsothermalProcess:
+                {
+                    _classprocess = new IsothermalProcess();
+                    labelGasMass.Visible = true;
+                    maskedTextBoxGasMass.Visible = true;
+                    labelMolarMass.Visible = true;
+                    maskedTextBoxMolarMass.Visible = true;
+                    InitialVolumeLabel.Visible = true;
+                    InitialVolumeTextBox.Visible = true;
+                    labelFinalVolume.Visible = true;
+                    maskedTextBoxFinalVolume.Visible = true;
+                    labelTemperature.Visible = true;
+                    maskedTextBoxlabelTemperature.Visible = true;
+                    labelInitialTemperature.Visible = true;
+                    labelFinalTemperature.Visible = true;
+                    maskedTextBoxInitialTemperature.Visible = false;
+                    maskedTextBoxFinalTemperature.Visible = false; ;
+                    maskedTextBoxHeatCapacityRatio.Visible = false;
+                    labelHeatCapacityRatio.Visible = false;
+                    labelPressure.Visible = false;
+                    maskedTextBoxPressure.Visible = false;
+                    break;
+                }
             }
-            
          }
 
         /// <summary>
@@ -176,6 +169,7 @@ namespace View
             {
                 _process.Add(_classprocess);
             }
+            this.Close();
         }
 
         /// <summary>
@@ -189,7 +183,7 @@ namespace View
             switch(_classprocess.NameProcess)
             {
                 //TODO: - исправил
-                case "IsobaricProcess":
+                case ProcessName.IsobaricProcess:
                 {
                     _calcBuffer.Add(Convert.ToDouble(maskedTextBoxInitialTemperature.Text));
                     _calcBuffer.Add(Convert.ToDouble(maskedTextBoxFinalTemperature.Text));
@@ -197,7 +191,7 @@ namespace View
                     _calcBuffer.Add(Convert.ToDouble(maskedTextBoxMolarMass.Text));
                     break;
                 }
-                case "IsothermalProcess":
+                case ProcessName.IsothermalProcess:
                 {
                     _calcBuffer.Add(Convert.ToDouble(maskedTextBoxGasMass.Text));
                     _calcBuffer.Add(Convert.ToDouble(maskedTextBoxlabelTemperature.Text));
@@ -206,7 +200,7 @@ namespace View
                     _calcBuffer.Add(Convert.ToDouble(maskedTextBoxMolarMass.Text));
                     break;      
                 }
-                 case "AdiabaticProcess":
+                 case ProcessName.AdiabaticProcess:
                 {
                     _calcBuffer.Add(Convert.ToDouble(InitialVolumeTextBox.Text));
                     _calcBuffer.Add(Convert.ToDouble(maskedTextBoxFinalVolume.Text));
@@ -220,16 +214,23 @@ namespace View
             {
                 _classprocess.ValuesParameteres = _calcBuffer;
             }
-            catch (Exception exception)
+            catch (ArgumentOutOfRangeException exception)
             {
-                if (exception is ArgumentOutOfRangeException ||
-                    exception is ArithmeticException)
-                    MessageBox.Show(
-                        exception.Message);
+                if (exception is ArgumentOutOfRangeException)
+                {
+                    MessageBox.Show(exception.Message);
+                }      
+            }
+            catch (ArithmeticException exception)
+            {
+                if (exception is ArithmeticException)
+                {
+                    MessageBox.Show(exception.Message);
+                }
             }
             // вывод результатов в текстбокс
             textBoxResult.Text = $"{_classprocess.Work}";
-            AddProcess.Visible = true;
+            AddProcessButton.Visible = true;
         }
     }
 

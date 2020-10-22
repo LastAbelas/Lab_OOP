@@ -9,12 +9,12 @@ namespace Model
     /// <summary>
     /// Базовый класс Процессов
     /// </summary>
-    public interface ProcessBase
+    public interface IProcessBase
     {
         /// <summary>
         /// Название процессов
         /// </summary>
-        public string NameProcess { get; }
+        public ProcessName NameProcess { get; }
 
         /// <summary>
         /// Термодинамическая работа
@@ -25,11 +25,6 @@ namespace Model
         /// Словарь типов исходных данных
         /// </summary>
         public Dictionary<double, string> ProcessDictionary { get; }
-
-        /// <summary>
-        /// Тип исходных данных
-        /// </summary>
-        public string TypeProcess { set; }
 
         /// <summary>
         /// Параметры физических велечин

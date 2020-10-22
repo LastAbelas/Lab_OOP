@@ -45,13 +45,13 @@
             this.labelGasMass = new System.Windows.Forms.Label();
             this.labelHeatCapacityRatio = new System.Windows.Forms.Label();
             this.labelTemperature = new System.Windows.Forms.Label();
-            this.TypeProcess = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.TypeProcessComboBox = new System.Windows.Forms.ComboBox();
+            this.SelectProcess = new System.Windows.Forms.Label();
             this.labelMolarMass = new System.Windows.Forms.Label();
             this.maskedTextBoxMolarMass = new System.Windows.Forms.MaskedTextBox();
             this.buttonFindWork = new System.Windows.Forms.Button();
-            this.AddProcess = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.AddProcessButton = new System.Windows.Forms.Button();
+            this.CloseButton = new System.Windows.Forms.Button();
             this.labelResult = new System.Windows.Forms.Label();
             this.textBoxResult = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -119,7 +119,7 @@
             // maskedTextBoxHeatCapacityRatio
             // 
             this.maskedTextBoxHeatCapacityRatio.Location = new System.Drawing.Point(80, 156);
-            this.maskedTextBoxHeatCapacityRatio.Mask = "1.0000";
+            this.maskedTextBoxHeatCapacityRatio.Mask = "1.0";
             this.maskedTextBoxHeatCapacityRatio.Name = "maskedTextBoxHeatCapacityRatio";
             this.maskedTextBoxHeatCapacityRatio.Size = new System.Drawing.Size(100, 20);
             this.maskedTextBoxHeatCapacityRatio.TabIndex = 6;
@@ -215,25 +215,25 @@
             this.labelTemperature.Text = "Temperature";
             this.labelTemperature.Visible = false;
             // 
-            // TypeProcess
+            // TypeProcessComboBox
             // 
-            this.TypeProcess.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.TypeProcess.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.TypeProcess.FormattingEnabled = true;
-            this.TypeProcess.Location = new System.Drawing.Point(189, 18);
-            this.TypeProcess.Name = "TypeProcess";
-            this.TypeProcess.Size = new System.Drawing.Size(165, 21);
-            this.TypeProcess.TabIndex = 16;
-            this.TypeProcess.SelectedIndexChanged += new System.EventHandler(this.TypeProcess_SelectionChangeCommitted);
+            this.TypeProcessComboBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.TypeProcessComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.TypeProcessComboBox.FormattingEnabled = true;
+            this.TypeProcessComboBox.Location = new System.Drawing.Point(189, 18);
+            this.TypeProcessComboBox.Name = "TypeProcessComboBox";
+            this.TypeProcessComboBox.Size = new System.Drawing.Size(165, 21);
+            this.TypeProcessComboBox.TabIndex = 16;
+            this.TypeProcessComboBox.SelectedIndexChanged += new System.EventHandler(this.TypeProcess_SelectionChangeCommitted);
             // 
-            // label9
+            // SelectProcess
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(80, 26);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(78, 13);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "Select Process";
+            this.SelectProcess.AutoSize = true;
+            this.SelectProcess.Location = new System.Drawing.Point(80, 26);
+            this.SelectProcess.Name = "SelectProcess";
+            this.SelectProcess.Size = new System.Drawing.Size(78, 13);
+            this.SelectProcess.TabIndex = 17;
+            this.SelectProcess.Text = "Select Process";
             // 
             // labelMolarMass
             // 
@@ -268,30 +268,30 @@
             this.buttonFindWork.Visible = false;
             this.buttonFindWork.Click += new System.EventHandler(this.buttonFindWork_Click);
             // 
-            // AddProcess
+            // AddProcessButton
             // 
-            this.AddProcess.BackColor = System.Drawing.Color.Black;
-            this.AddProcess.ForeColor = System.Drawing.Color.White;
-            this.AddProcess.Location = new System.Drawing.Point(80, 322);
-            this.AddProcess.Name = "AddProcess";
-            this.AddProcess.Size = new System.Drawing.Size(100, 28);
-            this.AddProcess.TabIndex = 22;
-            this.AddProcess.Text = "Add Process";
-            this.AddProcess.UseVisualStyleBackColor = false;
-            this.AddProcess.Visible = false;
-            this.AddProcess.Click += new System.EventHandler(this.AddProceses_Click);
+            this.AddProcessButton.BackColor = System.Drawing.Color.Black;
+            this.AddProcessButton.ForeColor = System.Drawing.Color.White;
+            this.AddProcessButton.Location = new System.Drawing.Point(80, 322);
+            this.AddProcessButton.Name = "AddProcessButton";
+            this.AddProcessButton.Size = new System.Drawing.Size(168, 28);
+            this.AddProcessButton.TabIndex = 22;
+            this.AddProcessButton.Text = "Add Process and Close";
+            this.AddProcessButton.UseVisualStyleBackColor = false;
+            this.AddProcessButton.Visible = false;
+            this.AddProcessButton.Click += new System.EventHandler(this.AddProceses_Click);
             // 
-            // button3
+            // CloseButton
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(254, 322);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 28);
-            this.button3.TabIndex = 23;
-            this.button3.Text = "Close";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.CloseForm_Click);
+            this.CloseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CloseButton.ForeColor = System.Drawing.Color.White;
+            this.CloseButton.Location = new System.Drawing.Point(254, 322);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(100, 28);
+            this.CloseButton.TabIndex = 23;
+            this.CloseButton.Text = "Close";
+            this.CloseButton.UseVisualStyleBackColor = false;
+            this.CloseButton.Click += new System.EventHandler(this.CloseForm_Click);
             // 
             // labelResult
             // 
@@ -320,13 +320,13 @@
             this.ClientSize = new System.Drawing.Size(421, 378);
             this.Controls.Add(this.textBoxResult);
             this.Controls.Add(this.labelResult);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.AddProcess);
+            this.Controls.Add(this.CloseButton);
+            this.Controls.Add(this.AddProcessButton);
             this.Controls.Add(this.buttonFindWork);
             this.Controls.Add(this.labelMolarMass);
             this.Controls.Add(this.maskedTextBoxMolarMass);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.TypeProcess);
+            this.Controls.Add(this.SelectProcess);
+            this.Controls.Add(this.TypeProcessComboBox);
             this.Controls.Add(this.labelTemperature);
             this.Controls.Add(this.labelHeatCapacityRatio);
             this.Controls.Add(this.labelGasMass);
@@ -374,11 +374,11 @@
         private System.Windows.Forms.Label labelGasMass;
         private System.Windows.Forms.Label labelHeatCapacityRatio;
         private System.Windows.Forms.Label labelTemperature;
-        private System.Windows.Forms.ComboBox TypeProcess;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox TypeProcessComboBox;
+        private System.Windows.Forms.Label SelectProcess;
         private System.Windows.Forms.Button buttonFindWork;
-        private System.Windows.Forms.Button AddProcess;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button AddProcessButton;
+        private System.Windows.Forms.Button CloseButton;
         private System.Windows.Forms.Label labelMolarMass;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxMolarMass;
         private System.Windows.Forms.Label labelResult;

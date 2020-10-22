@@ -16,16 +16,15 @@ namespace Model
         /// </summary>
         private static Random _random = new Random();
 
-        public static ProcessBase ExploreProcess()
+        public static IProcessBase ExploreProcess()
         {
-            ProcessBase process = new AdiabaticProcess();
+            IProcessBase process = new AdiabaticProcess();
 
             int typeProcess = _random.Next(0, 3);
 
             if (typeProcess == 0)
             {
                 process = new IsobaricProcess();
-                process.TypeProcess = "IsobaricProcess";
                 List<double> buffer = new List<double>();
                 buffer.Add(_random.Next(1, 100));
                 buffer.Add(_random.Next(1, 100));
@@ -37,7 +36,6 @@ namespace Model
             if (typeProcess == 1)
             {
                 process = new IsothermalProcess();
-                process.TypeProcess = "IsothermalProcess";
                 List<double> buffer = new List<double>();
                 buffer.Add(_random.Next(1, 100));
                 buffer.Add(_random.Next(1, 100));
@@ -50,7 +48,6 @@ namespace Model
             if (typeProcess == 2)
             {
                 process = new AdiabaticProcess();
-                process.TypeProcess = "AdiabaticProcess";
                 List<double> buffer = new List<double>();
                 buffer.Add(_random.Next(1, 100));
                 buffer.Add(_random.Next(1, 100));

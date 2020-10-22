@@ -10,7 +10,7 @@ namespace Model
     /// Класс описывающий работу адиабатного процесса
     /// </summary>
     [Serializable]
-    public class AdiabaticProcess : ProcessBase
+    public class AdiabaticProcess : IProcessBase
     {
         #region Поля физических велечин
 
@@ -29,10 +29,6 @@ namespace Model
         /// </summary>
         private double _pressure;
 
-        /// <summary>
-        /// Поле способа определения работы
-        /// </summary>
-        private string _typeProcess;
 
         #endregion
 
@@ -162,26 +158,18 @@ namespace Model
         {
             get
             {
-                return Math.Abs((Pressure * InitialVolume) / (HeatCapacityRatio - 1) *
+                return Math.Abs(Math.Round((Pressure * InitialVolume) / (HeatCapacityRatio - 1) *
                     (1 - (Math.Pow(InitialVolume, (HeatCapacityRatio - 1)) /
-                    Math.Pow(FinalVolume, (HeatCapacityRatio - 1)))));
+                    Math.Pow(FinalVolume, (HeatCapacityRatio - 1))))));
             }
-        }
-
-        /// <summary>
-        /// Свойство параметр способ расчета
-        /// </summary>
-        public string TypeProcess
-        {
-            set => _typeProcess = value;
         }
 
         /// <summary>
         /// Имя
         /// </summary>
-        public string NameProcess
+        public ProcessName NameProcess
         {
-            get => "AdiabaticProcess";
+            get => ProcessName.AdiabaticProcess;
         }
 
         /// <summary>
@@ -222,9 +210,9 @@ namespace Model
         {
             get
             {
-                string buffer = $"InitialVolume = {InitialVolume}"+
-                    $"FinalVolume = {FinalVolume}"+
-                    $"Pressure = {Pressure}"+
+                string buffer = $"InitialVolume = {InitialVolume}, "+
+                    $"FinalVolume = {FinalVolume}, "+
+                    $"Pressure = {Pressure}, "+
                     $"HeatCapacityRatio = {HeatCapacityRatio}";
                 return buffer;
             }
