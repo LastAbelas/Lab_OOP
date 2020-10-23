@@ -135,14 +135,6 @@ namespace View
         }
 
         /// <summary>
-        /// Фокус на листе
-        /// </summary>
-        private void DataGridView1_MouseEnter(object sender, EventArgs e)
-        {
-            dataGridViewProcessesWork.Focus();
-        }
-
-        /// <summary>
         /// Прокрутка мыши по листе
         /// </summary>
         private void DataGridView1_MouseWheel(object sender, MouseEventArgs e)

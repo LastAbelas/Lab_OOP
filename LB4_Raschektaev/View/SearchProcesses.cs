@@ -50,16 +50,6 @@ namespace View
         }
 
         /// <summary>
-        /// Искать
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SearchProcesscs_Load(object sender, EventArgs e)
-        {
-            StartSearch();
-        }
-
-        /// <summary>
         /// Поиск
         /// </summary>
         private void StartSearch()
@@ -84,6 +74,7 @@ namespace View
             }
         }
 
+        
         /// <summary>
         /// Поиск по имени
         /// </summary>
@@ -105,6 +96,7 @@ namespace View
             }
         }
 
+        //TODO: Дубль
         /// <summary>
         /// Поиск равно
         /// </summary>
@@ -115,6 +107,7 @@ namespace View
             {
                 foreach (var row in _process)
                 {
+                    //TODO: Переделать на равно
                     if (row.Work <=
                         1.05 * Convert.ToDouble(textBoxParameter.Text) &
                         row.Work >=
@@ -130,6 +123,7 @@ namespace View
             }
         }
 
+        //TODO: Дубль
         /// <summary>
         /// Поиск меньше
         /// </summary>
@@ -152,6 +146,7 @@ namespace View
             }
         }
 
+        //TODO: Дубль
         /// <summary>
         /// Поиск больше
         /// </summary>

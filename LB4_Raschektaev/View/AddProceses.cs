@@ -16,6 +16,7 @@ namespace View
     /// </summary>
     public partial class AddProceses : Form
     {
+        //TODO: RSDN
         /// <summary>
         /// Список классов процесса
         /// </summary>
@@ -48,7 +49,6 @@ namespace View
         private void AddProceses_Load(object sender, EventArgs e)
         {
             _processItemsList = new List<string>();
-            //TODO: убрать нафик - убрал нафиг
             TypeProcessComboBox.Items.Add(ProcessName.AdiabaticProcess);
             TypeProcessComboBox.Items.Add(ProcessName.IsobaricProcess);
             TypeProcessComboBox.Items.Add(ProcessName.IsothermalProcess);
@@ -179,10 +179,10 @@ namespace View
         /// <param name="e"></param>
         private void buttonFindWork_Click(object sender, EventArgs e)
         {
+            //TODO: RSDN
             List<double> _calcBuffer = new List<double>();
             switch(_classprocess.NameProcess)
             {
-                //TODO: - исправил
                 case ProcessName.IsobaricProcess:
                 {
                     _calcBuffer.Add(Convert.ToDouble(maskedTextBoxInitialTemperature.Text));
