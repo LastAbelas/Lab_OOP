@@ -41,7 +41,6 @@
             this.SearchEqualWorkLabel = new System.Windows.Forms.RadioButton();
             this.SearchByNameLabel = new System.Windows.Forms.RadioButton();
             this.dataGridViewProcess = new System.Windows.Forms.DataGridView();
-            this.ResizeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProcess)).BeginInit();
             this.SuspendLayout();
             // 
@@ -152,27 +151,16 @@
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Book Antiqua", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
             this.dataGridViewProcess.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridViewProcess.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dataGridViewProcess.Size = new System.Drawing.Size(240, 150);
             this.dataGridViewProcess.TabIndex = 8;
-            // 
-            // ResizeButton
-            // 
-            this.ResizeButton.BackColor = System.Drawing.Color.Black;
-            this.ResizeButton.Location = new System.Drawing.Point(18, 368);
-            this.ResizeButton.Name = "ResizeButton";
-            this.ResizeButton.Size = new System.Drawing.Size(239, 23);
-            this.ResizeButton.TabIndex = 16;
-            this.ResizeButton.Text = "Resize";
-            this.ResizeButton.UseVisualStyleBackColor = false;
-            this.ResizeButton.Click += new System.EventHandler(this.Resize_Click);
             // 
             // SearchProcesses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(284, 413);
-            this.Controls.Add(this.ResizeButton);
+            this.ClientSize = new System.Drawing.Size(284, 377);
             this.Controls.Add(this.Parameters);
             this.Controls.Add(this.textBoxParameter);
             this.Controls.Add(this.SearchALLButton);
@@ -206,6 +194,5 @@
         private System.Windows.Forms.RadioButton SearchEqualWorkLabel;
         private System.Windows.Forms.RadioButton SearchByNameLabel;
         private System.Windows.Forms.DataGridView dataGridViewProcess;
-        private System.Windows.Forms.Button ResizeButton;
     }
 }

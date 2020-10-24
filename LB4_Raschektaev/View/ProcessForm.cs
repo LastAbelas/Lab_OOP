@@ -22,7 +22,6 @@ namespace View
         public ProcessForm()
         {
             InitializeComponent();
-            dataGridViewProcessesWork.ScrollBars = ScrollBars.None;
             dataGridViewProcessesWork.MouseWheel 
                 += new MouseEventHandler(DataGridView1_MouseWheel);
 
@@ -118,6 +117,7 @@ namespace View
                             foreach (var process in newprocess)
                             {
                                 _process.Add(process);
+                                MethodsForAllForms.GiveScroll(dataGridViewProcessesWork);
                             }
                             MessageBox.Show("file uploaded successfully!");
                         }
@@ -177,6 +177,7 @@ namespace View
         private void Random_Click(object sender, EventArgs e)
         {
             _process.Add(Model.RandomProcess.ExploreProcess());
+            MethodsForAllForms.GiveScroll(dataGridViewProcessesWork);
         }
 
         /// <summary>
@@ -199,30 +200,6 @@ namespace View
         {
             var search = new SearchProcesses(_process);
             search.ShowDialog();
-        }
-
-        /// <summary>
-        ///  Кнопка расширения формы
-        /// </summary>
-        private void Resize_Click(object sender, EventArgs e)
-        {
-            var fallPoint = MethodsForAllForms.FallPointsSearch(
-               dataGridViewProcessesWork);
-            this.Width = 65 + fallPoint;
-            int buffer = dataGridViewProcessesWork.Width;
-            dataGridViewProcessesWork.Width = fallPoint;
-            RandomProcessButton.Width = RandomProcessButton.Width +
-                dataGridViewProcessesWork.Width - buffer;
-            ResizeButton.Width = ResizeButton.Width +
-                dataGridViewProcessesWork.Width - buffer;
-            SaveButton.Width = SaveButton.Width +
-                dataGridViewProcessesWork.Width - buffer;
-            LoadButton.Width = LoadButton.Width +
-                dataGridViewProcessesWork.Width - buffer;
-            groupBox1.Width = groupBox1.Width +
-                dataGridViewProcessesWork.Width - buffer;
-            this.FormBorderStyle = FormBorderStyle.Fixed3D;
-            fallPoint = 0;
         }
     }
 }

@@ -16,11 +16,7 @@ namespace View
     /// </summary>
     public partial class AddProceses : Form
     {
-        //TODO: RSDN
-        /// <summary>
-        /// Список классов процесса
-        /// </summary>
-        public List<string> _processItemsList;
+        ////TODO: RSDN - сделал privet но оказалось это вообще не нужным
 
         /// <summary>
         /// Лист 
@@ -48,10 +44,9 @@ namespace View
         /// <param name="e"></param>
         private void AddProceses_Load(object sender, EventArgs e)
         {
-            _processItemsList = new List<string>();
+            TypeProcessComboBox.Items.Add(ProcessName.IsothermalProcess);
             TypeProcessComboBox.Items.Add(ProcessName.AdiabaticProcess);
             TypeProcessComboBox.Items.Add(ProcessName.IsobaricProcess);
-            TypeProcessComboBox.Items.Add(ProcessName.IsothermalProcess);
         }
 
         /// <summary>
@@ -64,7 +59,6 @@ namespace View
             this.Close();
         }
 
-
         /// <summary>
         /// Раскрытие элемента TypeCalcComboBox и раскрытие полей ввода
         /// </summary>
@@ -74,7 +68,7 @@ namespace View
         {
             labelResult.Visible = true;
             textBoxResult.Visible = true;
-            buttonFindWork.Visible = true;
+            buttonCalculateWork.Visible = true;
             switch (TypeProcessComboBox.SelectedItem)
             {
                 case ProcessName.AdiabaticProcess:
@@ -163,7 +157,7 @@ namespace View
             }
             else if (textBoxResult.Text == String.Empty)
             {
-                MessageBox.Show($"Find Work");
+                MessageBox.Show($"Calculate Work!");
             }
             else
             {
@@ -177,60 +171,56 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonFindWork_Click(object sender, EventArgs e)
+        private void buttonCalculateWork_Click(object sender, EventArgs e)
         {
-            //TODO: RSDN
-            List<double> _calcBuffer = new List<double>();
-            switch(_classprocess.NameProcess)
-            {
-                case ProcessName.IsobaricProcess:
-                {
-                    _calcBuffer.Add(Convert.ToDouble(maskedTextBoxInitialTemperature.Text));
-                    _calcBuffer.Add(Convert.ToDouble(maskedTextBoxFinalTemperature.Text));
-                    _calcBuffer.Add(Convert.ToDouble(maskedTextBoxGasMass.Text));
-                    _calcBuffer.Add(Convert.ToDouble(maskedTextBoxMolarMass.Text));
-                    break;
-                }
-                case ProcessName.IsothermalProcess:
-                {
-                    _calcBuffer.Add(Convert.ToDouble(maskedTextBoxGasMass.Text));
-                    _calcBuffer.Add(Convert.ToDouble(maskedTextBoxlabelTemperature.Text));
-                    _calcBuffer.Add(Convert.ToDouble(InitialVolumeTextBox.Text));
-                    _calcBuffer.Add(Convert.ToDouble(maskedTextBoxFinalVolume.Text));
-                    _calcBuffer.Add(Convert.ToDouble(maskedTextBoxMolarMass.Text));
-                    break;      
-                }
-                 case ProcessName.AdiabaticProcess:
-                {
-                    _calcBuffer.Add(Convert.ToDouble(InitialVolumeTextBox.Text));
-                    _calcBuffer.Add(Convert.ToDouble(maskedTextBoxFinalVolume.Text));
-                    _calcBuffer.Add(Convert.ToDouble(maskedTextBoxPressure.Text));
-                    _calcBuffer.Add(Convert.ToDouble(maskedTextBoxHeatCapacityRatio.Text));
-                    break;
-                }
-            }
-            // передача введенных параметров в расчетный класс
+            //TODO: RSDN - исправил, оставил возможность получения Работы = бесконечность
+            //так как такое в принципе в задачах по физике возможно, но могу исправить
+            var calcBuffer = new List<double>();
             try
             {
-                _classprocess.ValuesParameteres = _calcBuffer;
-            }
-            catch (ArgumentOutOfRangeException exception)
-            {
-                if (exception is ArgumentOutOfRangeException)
+                switch (_classprocess.NameProcess)
                 {
-                    MessageBox.Show(exception.Message);
-                }      
+                    case ProcessName.IsobaricProcess:
+                    {
+                        calcBuffer.Add(Convert.ToDouble(maskedTextBoxInitialTemperature.Text));
+                        calcBuffer.Add(Convert.ToDouble(maskedTextBoxFinalTemperature.Text));
+                        calcBuffer.Add(Convert.ToDouble(maskedTextBoxGasMass.Text));
+                        calcBuffer.Add(Convert.ToDouble(maskedTextBoxMolarMass.Text));
+                        break;
+                    }
+                    case ProcessName.IsothermalProcess:
+                    {
+                        calcBuffer.Add(Convert.ToDouble(maskedTextBoxGasMass.Text));
+                        calcBuffer.Add(Convert.ToDouble(maskedTextBoxlabelTemperature.Text));
+                        calcBuffer.Add(Convert.ToDouble(InitialVolumeTextBox.Text));
+                        calcBuffer.Add(Convert.ToDouble(maskedTextBoxFinalVolume.Text));
+                        calcBuffer.Add(Convert.ToDouble(maskedTextBoxMolarMass.Text));
+                        break;
+                    }
+                    case ProcessName.AdiabaticProcess:
+                    {
+                        calcBuffer.Add(Convert.ToDouble(InitialVolumeTextBox.Text));
+                        calcBuffer.Add(Convert.ToDouble(maskedTextBoxFinalVolume.Text));
+                        calcBuffer.Add(Convert.ToDouble(maskedTextBoxPressure.Text));
+                        calcBuffer.Add(Convert.ToDouble(maskedTextBoxHeatCapacityRatio.Text));
+                        break;
+                    }
+                }
+                _classprocess.ValuesParameteres = calcBuffer;
+                textBoxResult.Text = $"{_classprocess.Work}";
+                AddProcessButton.Visible = true;
             }
-            catch (ArithmeticException exception)
+            catch (Exception exception)
             {
                 if (exception is ArithmeticException)
                 {
                     MessageBox.Show(exception.Message);
                 }
+                else 
+                {
+                    MessageBox.Show($"{exception}\nEnter the something!");
+                }
             }
-            // вывод результатов в текстбокс
-            textBoxResult.Text = $"{_classprocess.Work}";
-            AddProcessButton.Visible = true;
         }
     }
 

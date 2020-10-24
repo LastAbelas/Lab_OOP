@@ -49,7 +49,7 @@
             this.SelectProcess = new System.Windows.Forms.Label();
             this.labelMolarMass = new System.Windows.Forms.Label();
             this.maskedTextBoxMolarMass = new System.Windows.Forms.MaskedTextBox();
-            this.buttonFindWork = new System.Windows.Forms.Button();
+            this.buttonCalculateWork = new System.Windows.Forms.Button();
             this.AddProcessButton = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
             this.labelResult = new System.Windows.Forms.Label();
@@ -255,18 +255,18 @@
             this.maskedTextBoxMolarMass.ValidatingType = typeof(int);
             this.maskedTextBoxMolarMass.Visible = false;
             // 
-            // buttonFindWork
+            // buttonCalculateWork
             // 
-            this.buttonFindWork.BackColor = System.Drawing.Color.Black;
-            this.buttonFindWork.ForeColor = System.Drawing.Color.White;
-            this.buttonFindWork.Location = new System.Drawing.Point(254, 214);
-            this.buttonFindWork.Name = "buttonFindWork";
-            this.buttonFindWork.Size = new System.Drawing.Size(100, 23);
-            this.buttonFindWork.TabIndex = 21;
-            this.buttonFindWork.Text = "Find Work";
-            this.buttonFindWork.UseVisualStyleBackColor = false;
-            this.buttonFindWork.Visible = false;
-            this.buttonFindWork.Click += new System.EventHandler(this.buttonFindWork_Click);
+            this.buttonCalculateWork.BackColor = System.Drawing.Color.Black;
+            this.buttonCalculateWork.ForeColor = System.Drawing.Color.White;
+            this.buttonCalculateWork.Location = new System.Drawing.Point(254, 214);
+            this.buttonCalculateWork.Name = "buttonCalculateWork";
+            this.buttonCalculateWork.Size = new System.Drawing.Size(100, 23);
+            this.buttonCalculateWork.TabIndex = 21;
+            this.buttonCalculateWork.Text = "Calculate Work";
+            this.buttonCalculateWork.UseVisualStyleBackColor = false;
+            this.buttonCalculateWork.Visible = false;
+            this.buttonCalculateWork.Click += new System.EventHandler(this.buttonCalculateWork_Click);
             // 
             // AddProcessButton
             // 
@@ -322,7 +322,7 @@
             this.Controls.Add(this.labelResult);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.AddProcessButton);
-            this.Controls.Add(this.buttonFindWork);
+            this.Controls.Add(this.buttonCalculateWork);
             this.Controls.Add(this.labelMolarMass);
             this.Controls.Add(this.maskedTextBoxMolarMass);
             this.Controls.Add(this.SelectProcess);
@@ -376,7 +376,7 @@
         private System.Windows.Forms.Label labelTemperature;
         private System.Windows.Forms.ComboBox TypeProcessComboBox;
         private System.Windows.Forms.Label SelectProcess;
-        private System.Windows.Forms.Button buttonFindWork;
+        private System.Windows.Forms.Button buttonCalculateWork;
         private System.Windows.Forms.Button AddProcessButton;
         private System.Windows.Forms.Button CloseButton;
         private System.Windows.Forms.Label labelMolarMass;

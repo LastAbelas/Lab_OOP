@@ -66,5 +66,14 @@ namespace View
             return fallPoints;
         }
 
+        /// <summary>
+        /// Метод ля появления скрола при вводе значений
+        /// </summary>
+        /// <param name="dataGridView">таблица</param>
+        /// <returns>изменение</returns>
+        public static void GiveScroll(DataGridView dataGridView)
+        {
+            dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+        }
     }
 }

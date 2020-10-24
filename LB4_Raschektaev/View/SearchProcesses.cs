@@ -55,117 +55,55 @@ namespace View
         private void StartSearch()
         {
             _processeFilter.Clear();
-
-            if (SearchByNameLabel.Checked)
-            {
-                StartSearchName();
-            }
-            else if (SearchEqualWorkLabel.Checked)
-            {
-                StartSearchWorkEqual();
-            }
-            else if (SearchLessWorkLabel.Checked)
-            {
-                StartSearchAWorkLess();
-            }
-            else if (SearchGreaterWorkLabel.Checked)
-            {
-                StartSearchWorkGreater();
-            }
-        }
-
-        
-        /// <summary>
-        /// Поиск по имени
-        /// </summary>
-        private void StartSearchName()
-        {
             try
             {
-                foreach (var row in _process)
+                textBoxParameter.Text = textBoxParameter.Text.Replace(".", ",");
+                if (SearchEqualWorkLabel.Checked)
                 {
-                    if (row.NameProcess.ToString() == textBoxParameter.Text)
+                    foreach (var row in _process)
                     {
-                        _processeFilter.Add(row);
+                        //TODO: Переделать на равно - исправил и исправил дубли
+                        if (row.Work == Convert.ToDouble(textBoxParameter.Text))
+                        {
+                            _processeFilter.Add(row);
+                        }
                     }
                 }
+                else if (SearchLessWorkLabel.Checked)
+                {
+                    foreach (var row in _process)
+                    {
+                        if (row.Work < Convert.ToDouble(textBoxParameter.Text))
+                        {
+                            _processeFilter.Add(row);
+                        }
+                    }
+                }
+                else if (SearchGreaterWorkLabel.Checked)
+                {
+                    foreach (var row in _process)
+                    {
+                        if (row.Work > Convert.ToDouble(textBoxParameter.Text))
+                        {
+                            _processeFilter.Add(row);
+                        }
+                    }
+                }
+                else if (SearchByNameLabel.Checked)
+                {
+                    foreach (var row in _process)
+                    {
+                        if (row.NameProcess.ToString() == textBoxParameter.Text)
+                        {
+                            _processeFilter.Add(row);
+                        }
+                    }
+                }
+                MethodsForAllForms.GiveScroll(dataGridViewProcess);
             }
             catch (Exception exception)
             {
-                MessageBox.Show($"{exception}\nEnter the string!");
-            }
-        }
-
-        //TODO: Дубль
-        /// <summary>
-        /// Поиск равно
-        /// </summary>
-        private void StartSearchWorkEqual()
-        {
-            textBoxParameter.Text = textBoxParameter.Text.Replace(".", ",");
-            try
-            {
-                foreach (var row in _process)
-                {
-                    //TODO: Переделать на равно
-                    if (row.Work <=
-                        1.05 * Convert.ToDouble(textBoxParameter.Text) &
-                        row.Work >=
-                        0.95 * Convert.ToDouble(textBoxParameter.Text))
-                    {
-                        _processeFilter.Add(row);
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show($"{exception}\nEnter the number!");
-            }
-        }
-
-        //TODO: Дубль
-        /// <summary>
-        /// Поиск меньше
-        /// </summary>
-        private void StartSearchWorkGreater()
-        {
-            textBoxParameter.Text = textBoxParameter.Text.Replace(".", ",");
-            try
-            {
-                foreach (var row in _process)
-                {
-                    if (row.Work > Convert.ToDouble(textBoxParameter.Text))
-                    {
-                        _processeFilter.Add(row);
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show($"{exception}\nEnter the number!");
-            }
-        }
-
-        //TODO: Дубль
-        /// <summary>
-        /// Поиск больше
-        /// </summary>
-        private void StartSearchAWorkLess()
-        {
-            textBoxParameter.Text = textBoxParameter.Text.Replace(".", ",");
-            try
-            {
-                foreach (var row in _process)
-                {
-                    if (row.Work < Convert.ToDouble(textBoxParameter.Text))
-                    {
-                        _processeFilter.Add(row);
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show($"{exception}\nEnter the number!");
+                MessageBox.Show($"{exception}\nEnter the right format!");
             }
         }
 
@@ -182,26 +120,6 @@ namespace View
             {
                 StartSearch();
             }
-        }
-
-        /// <summary>
-        ///  Кнопка расширения формы
-        /// </summary>
-        private void Resize_Click(object sender, EventArgs e)
-        {
-            var fallPoint = MethodsForAllForms.FallPointsSearch(
-                dataGridViewProcess);
-            this.Width = 50 + fallPoint;
-            int buffer = dataGridViewProcess.Width;
-            dataGridViewProcess.Width = fallPoint;
-            SearchALLButton.Width = SearchALLButton.Width +
-                dataGridViewProcess.Width - buffer;
-            ResizeButton.Width = ResizeButton.Width +
-                dataGridViewProcess.Width - buffer;
-            textBoxParameter.Width = textBoxParameter.Width +
-                dataGridViewProcess.Width - buffer;
-            this.FormBorderStyle = FormBorderStyle.Fixed3D;
-            fallPoint = 0;
         }
     }
 }

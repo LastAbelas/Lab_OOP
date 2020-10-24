@@ -39,7 +39,6 @@
             this.SaveButton = new System.Windows.Forms.Button();
             this.LoadButton = new System.Windows.Forms.Button();
             this.RandomProcessButton = new System.Windows.Forms.Button();
-            this.ResizeButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProcessesWork)).BeginInit();
             this.SuspendLayout();
@@ -67,7 +66,7 @@
             this.dataGridViewProcessesWork.Cursor = System.Windows.Forms.Cursors.IBeam;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Book Antiqua", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
@@ -87,6 +86,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewProcessesWork.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewProcessesWork.RowHeadersVisible = false;
+            this.dataGridViewProcessesWork.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dataGridViewProcessesWork.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewProcessesWork.Size = new System.Drawing.Size(293, 189);
             this.dataGridViewProcessesWork.TabIndex = 0;
@@ -164,26 +164,13 @@
             this.RandomProcessButton.UseVisualStyleBackColor = false;
             this.RandomProcessButton.Click += new System.EventHandler(this.Random_Click);
             // 
-            // ResizeButton
-            // 
-            this.ResizeButton.BackColor = System.Drawing.Color.Black;
-            this.ResizeButton.ForeColor = System.Drawing.Color.White;
-            this.ResizeButton.Location = new System.Drawing.Point(24, 372);
-            this.ResizeButton.Name = "ResizeButton";
-            this.ResizeButton.Size = new System.Drawing.Size(299, 27);
-            this.ResizeButton.TabIndex = 13;
-            this.ResizeButton.Text = "Resize";
-            this.ResizeButton.UseVisualStyleBackColor = false;
-            this.ResizeButton.Click += new System.EventHandler(this.Resize_Click);
-            // 
             // ProcessForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(352, 418);
-            this.Controls.Add(this.ResizeButton);
+            this.ClientSize = new System.Drawing.Size(352, 385);
             this.Controls.Add(this.RandomProcessButton);
             this.Controls.Add(this.LoadButton);
             this.Controls.Add(this.SaveButton);
@@ -209,14 +196,13 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridViewProcessesWork;
         private System.Windows.Forms.Button RemoveProcessButton;
         private System.Windows.Forms.Button AddProcessButton;
         private System.Windows.Forms.Button FindProcessButton;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Button LoadButton;
         private System.Windows.Forms.Button RandomProcessButton;
-        private System.Windows.Forms.Button ResizeButton;
+        private System.Windows.Forms.DataGridView dataGridViewProcessesWork;
     }
 }
 
