@@ -6,6 +6,9 @@ using System.Windows.Forms;
 
 namespace View
 {
+    /// <summary>
+    ///  Класс входа в приложение
+    /// </summary>
     static class Program
     {
         /// <summary>

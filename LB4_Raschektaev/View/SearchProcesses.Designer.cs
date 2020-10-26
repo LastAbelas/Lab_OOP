@@ -98,10 +98,10 @@
             this.SearchEqualWorkLabel.AutoSize = true;
             this.SearchEqualWorkLabel.Location = new System.Drawing.Point(18, 229);
             this.SearchEqualWorkLabel.Name = "SearchEqualWorkLabel";
-            this.SearchEqualWorkLabel.Size = new System.Drawing.Size(98, 30);
+            this.SearchEqualWorkLabel.Size = new System.Drawing.Size(78, 30);
             this.SearchEqualWorkLabel.TabIndex = 10;
             this.SearchEqualWorkLabel.TabStop = true;
-            this.SearchEqualWorkLabel.Text = "SearchRoughly\r\nEqualWork";
+            this.SearchEqualWorkLabel.Text = "Search\r\nEqualWork";
             this.SearchEqualWorkLabel.UseVisualStyleBackColor = true;
             // 
             // SearchByNameLabel

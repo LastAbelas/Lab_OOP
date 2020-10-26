@@ -45,8 +45,10 @@ namespace Model
             }
             set
             {
-                _initialVolume = Checker.CheckNegativValue(value);
-                _initialVolume = Checker.CheckInfinity(value);
+                _initialVolume = Checker.CheckNegativValue(value,
+                    nameof(InitialVolume));
+                _initialVolume = Checker.CheckInfinity(value,
+                    nameof(InitialVolume));
             }
         }
 
@@ -61,8 +63,10 @@ namespace Model
             }
             set
             {
-                _finalVolume = Checker.CheckNegativValue(value);
-                _finalVolume = Checker.CheckInfinity(value);
+                _finalVolume = Checker.CheckNegativValue(value, 
+                    nameof(FinalVolume));
+                _finalVolume = Checker.CheckInfinity(value, 
+                    nameof(FinalVolume));
             }
         }
 
@@ -77,7 +81,10 @@ namespace Model
             }
             set
             {
-                _pressure = Checker.CheckNegativValue(value);
+                _pressure = Checker.CheckInfinity(value,
+                    nameof(Pressure));
+                _pressure = Checker.CheckNegativValue(value,
+                    nameof(Pressure));
             }
         }
 
@@ -97,7 +104,8 @@ namespace Model
             }
             set
             {
-                _heatCapacityRatio = CheckAdiabatic(value);
+                _heatCapacityRatio = CheckAdiabatic(value,
+                    nameof(HeatCapacityRatio));
             }
         }
 
@@ -106,32 +114,52 @@ namespace Model
         /// </summary>
         /// <param name="heatCapacityRatio">Показатель адиабаты</param>
         /// <returns>Показатель адиабаты</returns>
-        public static double CheckAdiabatic(double heatCapacityRatio)
+        public static double CheckAdiabatic(double heatCapacityRatio,
+            string paramName)
         {
             if (heatCapacityRatio < 0)
             {
                 throw new ArgumentOutOfRangeException
-                    ("Величина не может быть отрицательной! Проверьте!");
+                (paramName + "Величина не может быть отрицательной!" +
+                " Проверьте!");
             }
             else if (heatCapacityRatio < 1)
             {
                 throw new ArgumentOutOfRangeException
-                    ("Величина не может быть меньше 1! Проверьте!");
+                (paramName + "Величина не может быть меньше 1!" +
+                " Проверьте!");
             }
             else if (heatCapacityRatio == 1)
             {
                 throw new ArgumentOutOfRangeException
-                    ("Необходима бесконечная работа! Проверьте!");
+                    (paramName + "Необходима бесконечная работа!" +
+                    " Проверьте!");
             }
             else if (heatCapacityRatio > 2)
             {
                 throw new ArgumentOutOfRangeException
-                    ("Величина не может быть больше 2! Проверьте!");
+                    (paramName + "Величина не может быть больше 2!" +
+                    " Проверьте!");
             }
             else
             {
                 //TODO: Скобочки
                 return heatCapacityRatio;
+            }
+        }
+
+        /// <summary>
+        /// Лист значений физических велечин
+        /// </summary>
+        public List<double> ValuesParameteres
+        {
+            set
+            {
+                var buffer = value;
+                InitialVolume = buffer[0];
+                FinalVolume = buffer[1];
+                Pressure = buffer[2];
+                HeatCapacityRatio = buffer[3];
             }
         }
 
@@ -158,7 +186,8 @@ namespace Model
         {
             get
             {
-                return Math.Abs(Math.Round((Pressure * InitialVolume) / (HeatCapacityRatio - 1) *
+                return Math.Abs(Math.Round((Pressure * InitialVolume)
+                    / (HeatCapacityRatio - 1) *
                     (1 - (Math.Pow(InitialVolume, (HeatCapacityRatio - 1)) /
                     Math.Pow(FinalVolume, (HeatCapacityRatio - 1))))));
             }
@@ -187,22 +216,6 @@ namespace Model
                 return buffer;
             }
         }
-
-        /// <summary>
-        /// Лист значений физических велечин
-        /// </summary>
-        public List<double> ValuesParameteres
-        {
-            set
-            {
-                var buffer = value;
-                InitialVolume = buffer[0];
-                FinalVolume = buffer[1];
-                Pressure = buffer[2];
-                HeatCapacityRatio = buffer[3];
-            }
-        }
-
         /// <summary>
         /// Вывод физических велечин
         /// </summary>

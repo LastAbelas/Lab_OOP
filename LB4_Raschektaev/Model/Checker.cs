@@ -20,13 +20,15 @@ namespace Model
         /// Проверка для всегда положительных величин
         /// </summary>
         /// <param name="physicalQuantity">Физическая величина</param>
+        /// <param name="parameter">Имя величины</param>
         /// <returns>Физическую величину</returns>
-        public static double CheckNegativValue(double physicalQuantity)
+        public static double CheckNegativValue(double physicalQuantity,
+            string parameter)
         {
             if (physicalQuantity < 0)
             {
                 throw new ArgumentOutOfRangeException
-                    ("Величина не может быть отрицательной! Проверьте!");
+                    (parameter, " - Величина не может быть отрицательной! Проверьте!");
             }
             else
             {
@@ -37,13 +39,15 @@ namespace Model
         /// Защита от нуля в знаменателе
         /// </summary>
         /// <param name="physicalQuantity">Физическая величина</param>
+        /// <param name="parameter">Имя величины</param>
         /// <returns>Физическую величину</returns>
-        public static double CheckInfinity(double physicalQuantity)
+        public static double CheckInfinity(double physicalQuantity, 
+            string parameter)
         {
             if (physicalQuantity == 0)
             {
-                throw new ArgumentOutOfRangeException
-                    ("Необходима бесконечная работа! Проверте!");
+                throw new ArgumentOutOfRangeException(parameter,
+                    nameof(parameter)+" - Не может быть равен нулю!");
             }
             else
             {
@@ -55,13 +59,16 @@ namespace Model
         /// Защита от неправильной температуры
         /// </summary>
         /// <param name="temperature">Физическая величина</param>
+        /// <param name="parameter">Имя величины</param>
         /// <returns>Физическую величину</returns>
-        public static double CheckTemperature(double temperature)
+        public static double CheckTemperature(double temperature,
+            string parameter)
         {
             if (temperature <= MINTEMPERATURE)
             {
                 throw new ArgumentOutOfRangeException
-                    ("Меньше температуры в градусах нет! Проверте!");
+                    (parameter, nameof(parameter) + " - Меньше температуры" +
+                    "в градусах нет! Проверте!");
             }
             else
             {

@@ -99,11 +99,10 @@ namespace View
                         }
                     }
                 }
-                MethodsForAllForms.GiveScroll(dataGridViewProcess);
             }
             catch (Exception exception)
             {
-                MessageBox.Show($"{exception}\nEnter the right format!");
+                MessageBox.Show($"Enter the right format for seaching!");
             }
         }
 

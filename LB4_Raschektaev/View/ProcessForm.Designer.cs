@@ -86,7 +86,6 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewProcessesWork.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewProcessesWork.RowHeadersVisible = false;
-            this.dataGridViewProcessesWork.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dataGridViewProcessesWork.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewProcessesWork.Size = new System.Drawing.Size(293, 189);
             this.dataGridViewProcessesWork.TabIndex = 0;

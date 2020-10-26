@@ -38,6 +38,9 @@ namespace View
         private void ProcessForm_Load(object sender, EventArgs e)
         {
             MethodsForAllForms.LoadGrid(dataGridViewProcessesWork, _process);
+            dataGridViewProcessesWork.Columns["Name Process"].Frozen = false;
+            dataGridViewProcessesWork.Columns["Work"].Frozen = false;
+            dataGridViewProcessesWork.Columns["Parametere"].Frozen = false;
         }
 
         /// <summary>
@@ -117,7 +120,6 @@ namespace View
                             foreach (var process in newprocess)
                             {
                                 _process.Add(process);
-                                MethodsForAllForms.GiveScroll(dataGridViewProcessesWork);
                             }
                             MessageBox.Show("file uploaded successfully!");
                         }
@@ -177,7 +179,6 @@ namespace View
         private void Random_Click(object sender, EventArgs e)
         {
             _process.Add(Model.RandomProcess.ExploreProcess());
-            MethodsForAllForms.GiveScroll(dataGridViewProcessesWork);
         }
 
         /// <summary>

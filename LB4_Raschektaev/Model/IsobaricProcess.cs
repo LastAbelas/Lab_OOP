@@ -48,7 +48,23 @@ namespace Model
             }
             set
             {
-                _initialTemperature = Checker.CheckTemperature(value);
+                _initialTemperature = Checker.CheckTemperature(value,
+                    nameof(InitialTemperature));
+            }
+        }
+
+        /// <summary>
+        /// Лист значений физических велечин
+        /// </summary>
+        public List<double> ValuesParameteres
+        {
+            set
+            {
+                var buffer = value;
+                InitialTemperature = buffer[0];
+                FinalTemperature = buffer[1];
+                GasMass = buffer[2];
+                MolarMass = buffer[3];
             }
         }
 
@@ -63,7 +79,8 @@ namespace Model
             }
             set
             {
-                _finalTemperature = Checker.CheckTemperature(value);
+                _finalTemperature = Checker.CheckTemperature(value,
+                    nameof(FinalTemperature));
             }
         }
 
@@ -78,7 +95,10 @@ namespace Model
             }
             set
             {
-                _gasMass = Checker.CheckNegativValue(value);
+                _gasMass = Checker.CheckInfinity(value,
+                    nameof(GasMass));
+                _gasMass = Checker.CheckNegativValue(value,
+                    nameof(GasMass));
             }
         }
 
@@ -93,7 +113,10 @@ namespace Model
             }
             set
             {
-                _molarMass = Checker.CheckNegativValue(value);
+                _molarMass = Checker.CheckInfinity(value,
+                    nameof(MolarMass));
+                _molarMass = Checker.CheckNegativValue(value,
+                    nameof(MolarMass));
             }
         }
 
@@ -104,7 +127,8 @@ namespace Model
         {
             get
             {
-                return Math.Abs(Math.Round((GasMass * GASCONSTANT * (FinalTemperature -
+                return Math.Abs(Math.Round((GasMass * GASCONSTANT
+                    * (FinalTemperature -
                     InitialTemperature) / MolarMass)));
             }
         }
@@ -150,29 +174,15 @@ namespace Model
         }
 
         /// <summary>
-        /// Лист значений физических велечин
-        /// </summary>
-        public List<double> ValuesParameteres
-        {
-            set
-            {
-                var buffer = value;
-                InitialTemperature = buffer[0];
-                FinalTemperature = buffer[1];
-                GasMass = buffer[2];
-                MolarMass = buffer[3];
-            }
-        }
-
-        /// <summary>
         /// Вывод физических велечин
         /// </summary>
         public string ParameteresToOutput
         {
             get
             {
-                string buffer = $"InitialTemperature = {InitialTemperature}, "+
-                    $"FinalTemperature = {FinalTemperature}, "
+                string buffer = $"InitialTemperature = " +
+                    $"{InitialTemperature}, "+ $"FinalTemperature" +
+                    $" = {FinalTemperature}, "
                     +$"GasMass = {GasMass}, "+ $"MolarMass = {MolarMass}";
                 return buffer;
             }

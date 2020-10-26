@@ -48,8 +48,10 @@ namespace Model
             }
             set
             {
-                _initialVolume = Checker.CheckNegativValue(value);
-                _initialVolume = Checker.CheckInfinity(value);
+                _initialVolume = Checker.CheckNegativValue(value, 
+                    nameof(InitialVolume));
+                _initialVolume = Checker.CheckInfinity(value,
+                    nameof(InitialVolume));
             }
         }
 
@@ -64,8 +66,10 @@ namespace Model
             }
             set
             {
-                _finalVolume = Checker.CheckNegativValue(value);
-                _finalVolume = Checker.CheckInfinity(value);
+                _finalVolume = Checker.CheckNegativValue(value,
+                    nameof(FinalVolume));
+                _finalVolume = Checker.CheckInfinity(value,
+                    nameof(FinalVolume));
             }
         }
 
@@ -80,7 +84,26 @@ namespace Model
             }
             set
             {
-                _gasMass = Checker.CheckNegativValue(value);
+                _gasMass = Checker.CheckInfinity(value,
+                    nameof(GasMass));
+                _gasMass = Checker.CheckNegativValue(value,
+                    nameof(GasMass));
+            }
+        }
+
+        /// <summary>
+        /// Лист значений физических велечин
+        /// </summary>
+        public List<double> ValuesParameteres
+        {
+            set
+            {
+                var buffer = value;
+                GasMass = buffer[0];
+                Temperature = buffer[1];
+                InitialVolume = buffer[2];
+                FinalVolume = buffer[3];
+                MolarMass = buffer[4];
             }
         }
 
@@ -95,7 +118,10 @@ namespace Model
             }
             set
             {
-                _molarMass = Checker.CheckNegativValue(value);
+                _molarMass = Checker.CheckInfinity(value,
+                    nameof(MolarMass));
+                _molarMass = Checker.CheckNegativValue(value,
+                    nameof(MolarMass));
             }
         }
 
@@ -115,7 +141,8 @@ namespace Model
             }
             set
             {
-                _temperature = Checker.CheckTemperature(value);
+                _temperature = Checker.CheckTemperature(value,
+                    nameof(Temperature));
             }
         }
 
@@ -126,8 +153,8 @@ namespace Model
         {
             get
             {
-                return Math.Abs(Math.Round((GasMass * GASCONSTANT * Temperature *
-                                 Math.Log(FinalVolume / InitialVolume))
+                return Math.Abs(Math.Round((GasMass * GASCONSTANT *
+                    Temperature * Math.Log(FinalVolume / InitialVolume))
                                  / MolarMass));
             }
         }
@@ -171,22 +198,6 @@ namespace Model
                 buffer.Add("FinalVolume");
                 buffer.Add("MolarMass");
                 return buffer;
-            }
-        }
-
-        /// <summary>
-        /// Лист значений физических велечин
-        /// </summary>
-        public List<double> ValuesParameteres
-        {
-            set
-            {
-                var buffer = value;
-                GasMass = buffer[0];
-                Temperature = buffer[1];
-                InitialVolume = buffer[2];
-                FinalVolume = buffer[3];
-                MolarMass = buffer[4];
             }
         }
 
