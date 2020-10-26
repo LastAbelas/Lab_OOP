@@ -28,7 +28,7 @@ namespace Model
             if (physicalQuantity < 0)
             {
                 throw new ArgumentOutOfRangeException
-                    (parameter, " - Величина не может быть отрицательной! Проверьте!");
+                    (parameter, " -  quantity cannot be negative! Check it out!");
             }
             else
             {
@@ -47,7 +47,7 @@ namespace Model
             if (physicalQuantity == 0)
             {
                 throw new ArgumentOutOfRangeException(parameter,
-                    parameter+" - Не может быть равен нулю!");
+                    parameter + " cannot be zero!");
             }
             else
             {
@@ -67,8 +67,8 @@ namespace Model
             if (temperature <= MINTEMPERATURE)
             {
                 throw new ArgumentOutOfRangeException
-                    (parameter, parameter + " - Меньше температуры" +
-                    "в градусах нет! Проверте!");
+                    (parameter, parameter + " - Less temperature " +
+                    "not in degrees! Check it out!");
             }
             else
             {

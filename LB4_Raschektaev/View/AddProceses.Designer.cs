@@ -140,9 +140,9 @@
             this.InitialVolumeLabel.AutoSize = true;
             this.InitialVolumeLabel.Location = new System.Drawing.Point(77, 68);
             this.InitialVolumeLabel.Name = "InitialVolumeLabel";
-            this.InitialVolumeLabel.Size = new System.Drawing.Size(66, 13);
+            this.InitialVolumeLabel.Size = new System.Drawing.Size(69, 13);
             this.InitialVolumeLabel.TabIndex = 8;
-            this.InitialVolumeLabel.Text = "InitialVolume";
+            this.InitialVolumeLabel.Text = "Initial Volume";
             this.InitialVolumeLabel.Visible = false;
             // 
             // labelFinalVolume
@@ -150,9 +150,9 @@
             this.labelFinalVolume.AutoSize = true;
             this.labelFinalVolume.Location = new System.Drawing.Point(254, 68);
             this.labelFinalVolume.Name = "labelFinalVolume";
-            this.labelFinalVolume.Size = new System.Drawing.Size(64, 13);
+            this.labelFinalVolume.Size = new System.Drawing.Size(67, 13);
             this.labelFinalVolume.TabIndex = 9;
-            this.labelFinalVolume.Text = "FinalVolume";
+            this.labelFinalVolume.Text = "Final Volume";
             this.labelFinalVolume.Visible = false;
             // 
             // labelInitialTemperature
@@ -160,19 +160,19 @@
             this.labelInitialTemperature.AutoSize = true;
             this.labelInitialTemperature.Location = new System.Drawing.Point(77, 68);
             this.labelInitialTemperature.Name = "labelInitialTemperature";
-            this.labelInitialTemperature.Size = new System.Drawing.Size(91, 13);
+            this.labelInitialTemperature.Size = new System.Drawing.Size(94, 13);
             this.labelInitialTemperature.TabIndex = 10;
-            this.labelInitialTemperature.Text = "InitialTemperature";
+            this.labelInitialTemperature.Text = "Initial Temperature";
             this.labelInitialTemperature.Visible = false;
             // 
             // labelFinalTemperature
             // 
             this.labelFinalTemperature.AutoSize = true;
-            this.labelFinalTemperature.Location = new System.Drawing.Point(254, 68);
+            this.labelFinalTemperature.Location = new System.Drawing.Point(251, 68);
             this.labelFinalTemperature.Name = "labelFinalTemperature";
-            this.labelFinalTemperature.Size = new System.Drawing.Size(89, 13);
+            this.labelFinalTemperature.Size = new System.Drawing.Size(92, 13);
             this.labelFinalTemperature.TabIndex = 11;
-            this.labelFinalTemperature.Text = "FinalTemperature";
+            this.labelFinalTemperature.Text = "Final Temperature";
             this.labelFinalTemperature.Visible = false;
             // 
             // labelPressure
@@ -190,19 +190,19 @@
             this.labelGasMass.AutoSize = true;
             this.labelGasMass.Location = new System.Drawing.Point(80, 136);
             this.labelGasMass.Name = "labelGasMass";
-            this.labelGasMass.Size = new System.Drawing.Size(51, 13);
+            this.labelGasMass.Size = new System.Drawing.Size(54, 13);
             this.labelGasMass.TabIndex = 13;
-            this.labelGasMass.Text = "GasMass";
+            this.labelGasMass.Text = "Gas Mass";
             this.labelGasMass.Visible = false;
             // 
             // labelHeatCapacityRatio
             // 
             this.labelHeatCapacityRatio.AutoSize = true;
-            this.labelHeatCapacityRatio.Location = new System.Drawing.Point(81, 136);
+            this.labelHeatCapacityRatio.Location = new System.Drawing.Point(80, 136);
             this.labelHeatCapacityRatio.Name = "labelHeatCapacityRatio";
-            this.labelHeatCapacityRatio.Size = new System.Drawing.Size(96, 13);
+            this.labelHeatCapacityRatio.Size = new System.Drawing.Size(102, 13);
             this.labelHeatCapacityRatio.TabIndex = 14;
-            this.labelHeatCapacityRatio.Text = "HeatCapacityRatio";
+            this.labelHeatCapacityRatio.Text = "Heat Capacity Ratio";
             this.labelHeatCapacityRatio.Visible = false;
             // 
             // labelTemperature
@@ -238,11 +238,11 @@
             // labelMolarMass
             // 
             this.labelMolarMass.AutoSize = true;
-            this.labelMolarMass.Location = new System.Drawing.Point(251, 140);
+            this.labelMolarMass.Location = new System.Drawing.Point(251, 139);
             this.labelMolarMass.Name = "labelMolarMass";
-            this.labelMolarMass.Size = new System.Drawing.Size(58, 13);
+            this.labelMolarMass.Size = new System.Drawing.Size(61, 13);
             this.labelMolarMass.TabIndex = 20;
-            this.labelMolarMass.Text = "MolarMass";
+            this.labelMolarMass.Text = "Molar Mass";
             this.labelMolarMass.Visible = false;
             // 
             // maskedTextBoxMolarMass

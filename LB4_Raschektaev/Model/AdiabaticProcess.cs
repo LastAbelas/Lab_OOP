@@ -113,34 +113,35 @@ namespace Model
         /// Проверка показатели адиабаты
         /// </summary>
         /// <param name="heatCapacityRatio">Показатель адиабаты</param>
+        /// <param name="paramName">Имя параметра</param>
         /// <returns>Показатель адиабаты</returns>
-        /// TODO: XML
+        /// TODO: XML - решено
         public static double CheckAdiabatic(double heatCapacityRatio,
             string paramName)
         {
             if (heatCapacityRatio < 0)
             {
                 throw new ArgumentOutOfRangeException
-                (paramName + "Величина не может быть отрицательной!" +
-                " Проверьте!");
+                (paramName, paramName + " - quantity cannot be negative!" +
+                " Check!");
             }
             else if (heatCapacityRatio < 1)
             {
                 throw new ArgumentOutOfRangeException
-                (paramName + "Величина не может быть меньше 1!" +
-                " Проверьте!");
+                (paramName, paramName + " - value cannot be less than 1!" +
+                " Check!");
             }
             else if (heatCapacityRatio == 1)
             {
                 throw new ArgumentOutOfRangeException
-                    (paramName + "Необходима бесконечная работа!" +
-                    " Проверьте!");
+                    (paramName, paramName + "- Endless work required!" +
+                    " Check!");
             }
             else if (heatCapacityRatio > 2)
             {
                 throw new ArgumentOutOfRangeException
-                    (paramName + "Величина не может быть больше 2!" +
-                    " Проверьте!");
+                    (paramName, paramName + " - value cannot be more than 2!" +
+                    " Check!");
             }
             else
             {
