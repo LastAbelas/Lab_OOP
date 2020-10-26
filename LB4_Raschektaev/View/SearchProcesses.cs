@@ -58,40 +58,30 @@ namespace View
             try
             {
                 textBoxParameter.Text = textBoxParameter.Text.Replace(".", ",");
-                if (SearchEqualWorkLabel.Checked)
+                foreach (var row in _process)
                 {
-                    foreach (var row in _process)
+                    if (SearchEqualWorkLabel.Checked)
                     {
-                        //TODO: Переделать на равно - исправил и исправил дубли
                         if (row.Work == Convert.ToDouble(textBoxParameter.Text))
                         {
                             _processeFilter.Add(row);
                         }
                     }
-                }
-                else if (SearchLessWorkLabel.Checked)
-                {
-                    foreach (var row in _process)
+                    else if (SearchLessWorkLabel.Checked)
                     {
                         if (row.Work < Convert.ToDouble(textBoxParameter.Text))
                         {
                             _processeFilter.Add(row);
                         }
                     }
-                }
-                else if (SearchGreaterWorkLabel.Checked)
-                {
-                    foreach (var row in _process)
+                    else if (SearchGreaterWorkLabel.Checked)
                     {
                         if (row.Work > Convert.ToDouble(textBoxParameter.Text))
                         {
                             _processeFilter.Add(row);
                         }
                     }
-                }
-                else if (SearchByNameLabel.Checked)
-                {
-                    foreach (var row in _process)
+                    else if (SearchByNameLabel.Checked)
                     {
                         if (row.NameProcess.ToString() == textBoxParameter.Text)
                         {
