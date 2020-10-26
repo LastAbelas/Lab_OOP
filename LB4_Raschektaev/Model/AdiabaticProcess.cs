@@ -114,6 +114,7 @@ namespace Model
         /// </summary>
         /// <param name="heatCapacityRatio">Показатель адиабаты</param>
         /// <returns>Показатель адиабаты</returns>
+        /// TODO: XML
         public static double CheckAdiabatic(double heatCapacityRatio,
             string paramName)
         {
@@ -143,7 +144,6 @@ namespace Model
             }
             else
             {
-                //TODO: Скобочки
                 return heatCapacityRatio;
             }
         }
@@ -170,11 +170,13 @@ namespace Model
         {
             get
             {
-                var bufferProcess = new Dictionary<double, string>();
-                bufferProcess.Add(1, "Initial Volume");
-                bufferProcess.Add(2, "Final Volume");
-                bufferProcess.Add(3, "Pressure");
-                bufferProcess.Add(4, "Heat Capacity Ratio");
+                var bufferProcess = new Dictionary<double, string>
+                {
+                    {1, "Initial Volume"}, 
+                    {2, "Final Volume"}, 
+                    {3, "Pressure"}, 
+                    {4, "Heat Capacity Ratio"}
+                };
                 return bufferProcess;
             }
         }
@@ -182,16 +184,11 @@ namespace Model
         /// <summary>
         /// Свойство работы адиабаты
         /// </summary>
-        public double Work
-        {
-            get
-            {
-                return Math.Abs(Math.Round((Pressure * InitialVolume)
-                    / (HeatCapacityRatio - 1) *
-                    (1 - (Math.Pow(InitialVolume, (HeatCapacityRatio - 1)) /
-                    Math.Pow(FinalVolume, (HeatCapacityRatio - 1))))));
-            }
-        }
+        public double Work =>
+            Math.Abs(Math.Round((Pressure * InitialVolume)
+                                / (HeatCapacityRatio - 1) *
+                                (1 - (Math.Pow(InitialVolume, (HeatCapacityRatio - 1)) /
+                                      Math.Pow(FinalVolume, (HeatCapacityRatio - 1))))));
 
         /// <summary>
         /// Имя
@@ -208,11 +205,13 @@ namespace Model
         {
             get
             {
-                var buffer = new List<string>();
-                buffer.Add("InitialVolume");
-                buffer.Add("FinalVolume");
-                buffer.Add("Pressure");
-                buffer.Add("HeatCapacityRatio");
+                var buffer = new List<string>
+                {
+                    "InitialVolume", 
+                    "FinalVolume", 
+                    "Pressure", 
+                    "HeatCapacityRatio"
+                };
                 return buffer;
             }
         }

@@ -16,7 +16,6 @@ namespace View
     /// </summary>
     public partial class AddProceses : Form
     {
-        ////TODO: RSDN - сделал privet но оказалось это вообще не нужным
         /// <summary>
         /// Лист 
         /// </summary>
@@ -198,38 +197,38 @@ namespace View
         /// <param name="e"></param>
         private void buttonCalculateWork_Click(object sender, EventArgs e)
         {
-            //TODO: RSDN - исправил
-                switch (_classprocess.NameProcess)
+            switch (_classprocess.NameProcess)
+            {
+                case ProcessName.IsobaricProcess:
                 {
-                    case ProcessName.IsobaricProcess:
-                    {
-                        _classprocess = AddIsobaricWork();
-                        ShowException(_exceptionList);
-                        break;
-                    }
-                    case ProcessName.IsothermalProcess:
-                    {
-                        _classprocess = AddIsothermalWork();
-                        ShowException(_exceptionList);
-                        break;
-                    }
-                    case ProcessName.AdiabaticProcess:
-                    {
-                        _classprocess = AddAdiabaticlWork();
-                        ShowException(_exceptionList);
-                        break;
-                    }
+                    _classprocess = AddIsobaricWork();
+                    ShowException(_exceptionList);
+                    break;
                 }
-                if (double.IsNaN(_classprocess.Work)|| double.IsInfinity(_classprocess.Work))
+                case ProcessName.IsothermalProcess:
                 {
-                    textBoxResult.Text = "Некорректные данные! Проверьте!";
-                    AddProcessButton.Visible = false;
+                    _classprocess = AddIsothermalWork();
+                    ShowException(_exceptionList);
+                    break;
                 }
-                else
+                case ProcessName.AdiabaticProcess:
                 {
-                    textBoxResult.Text = $"{_classprocess.Work}";
-                    AddProcessButton.Visible = true;
+                    _classprocess = AddAdiabaticlWork();
+                    ShowException(_exceptionList);
+                    break;
                 }
+            }
+            if (double.IsNaN(_classprocess.Work)
+                || double.IsInfinity(_classprocess.Work))
+            {
+                textBoxResult.Text = "Некорректные данные! Проверьте!";
+                AddProcessButton.Visible = false;
+            }
+            else
+            {
+                textBoxResult.Text = $"{_classprocess.Work}";
+                AddProcessButton.Visible = true;
+            }
         }
 
         /// <summary>
@@ -260,8 +259,9 @@ namespace View
         /// <summary>
         /// Добавить параметры Изобарного процесса
         /// </summary>
-        private IsobaricProcess AddIsobaricWork()
+        private IProcessBase AddIsobaricWork()
         {
+            //TODO: RSDN?
             var _classprocess = new IsobaricProcess();
             var actions = new List<Action>()
                 {
@@ -299,41 +299,41 @@ namespace View
         /// <summary>
         /// Добавить параметры Изобарного процесса
         /// </summary>
-        private IsothermalProcess AddIsothermalWork()
+        private IProcessBase AddIsothermalWork()
         {
             var _classprocess = new IsothermalProcess();
             var actions = new List<Action>()
                 {
-                new Action(() =>
-                {
-                    (_classprocess as IsothermalProcess).GasMass =
-                    CheckStringNullOrEmpty(maskedTextBoxGasMass.Text,
-                    "TextBoxGasMass");
-                }),
-                new Action(() =>
-                {
-                    (_classprocess as IsothermalProcess).Temperature =
-                    CheckStringNullOrEmpty(maskedTextBoxlabelTemperature.Text,
-                    "TextBoxTemperature");
-                }),
-                new Action(() =>
-                {
-                    (_classprocess as IsothermalProcess).InitialVolume =
-                    CheckStringNullOrEmpty(InitialVolumeTextBox.Text,
-                    "InitialVolume");
-                }),
-                new Action(() =>
-                {
-                    (_classprocess as IsothermalProcess).FinalVolume =
-                    CheckStringNullOrEmpty(maskedTextBoxFinalVolume.Text,
-                    "TextBoxFinalVolume");
-                }),
-                new Action(() =>
-                {
-                    (_classprocess as IsothermalProcess).MolarMass =
-                    CheckStringNullOrEmpty(maskedTextBoxMolarMass.Text,
-                    "TextBoxMolarMass");
-                }),
+                    () =>
+                    {
+                    _classprocess.GasMass =
+                        CheckStringNullOrEmpty(maskedTextBoxGasMass.Text,
+                            "TextBoxGasMass");
+                    },
+                    () =>
+                    {
+                        _classprocess.Temperature =
+                            CheckStringNullOrEmpty(maskedTextBoxlabelTemperature.Text,
+                                "TextBoxTemperature");
+                    },
+                    () =>
+                    {
+                        _classprocess.InitialVolume =
+                            CheckStringNullOrEmpty(InitialVolumeTextBox.Text,
+                                "InitialVolume");
+                    },
+                    () =>
+                    {
+                        _classprocess.FinalVolume =
+                            CheckStringNullOrEmpty(maskedTextBoxFinalVolume.Text,
+                                "TextBoxFinalVolume");
+                    },
+                    () =>
+                    {
+                        _classprocess.MolarMass =
+                            CheckStringNullOrEmpty(maskedTextBoxMolarMass.Text,
+                                "TextBoxMolarMass");
+                    },
             };
             actions.ForEach(SetValue);
             return _classprocess;
@@ -342,17 +342,18 @@ namespace View
         /// <summary>
         /// Добавить параметры Изобарного процесса
         /// </summary>
-        private AdiabaticProcess AddAdiabaticlWork()
+        private IProcessBase AddAdiabaticlWork()
         {
+            //TODO: RSDN
             var _classprocess = new AdiabaticProcess();
             var actions = new List<Action>()
                 {
-                new Action(() =>
+                () =>
                 {
                     (_classprocess as AdiabaticProcess).InitialVolume =
-                    CheckStringNullOrEmpty(InitialVolumeTextBox.Text,
-                    "InitialVolumeTextBox");
-                }),
+                        CheckStringNullOrEmpty(InitialVolumeTextBox.Text,
+                            "InitialVolumeTextBox");
+                },
                 new Action(() =>
                 {
                     (_classprocess as AdiabaticProcess).FinalVolume =
