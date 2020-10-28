@@ -185,23 +185,6 @@ namespace Model
         }
 
         /// <summary>
-        /// Физические велечины
-        /// </summary>
-        public List<string> NamesParameteres
-        {
-            get
-            {
-                var buffer = new List<string>();
-                buffer.Add("GasMass");
-                buffer.Add("Temperature");
-                buffer.Add("InitialVolume");
-                buffer.Add("FinalVolume");
-                buffer.Add("MolarMass");
-                return buffer;
-            }
-        }
-
-        /// <summary>
         /// Вывод физических велечин
         /// </summary>
         public string ParameteresToOutput
