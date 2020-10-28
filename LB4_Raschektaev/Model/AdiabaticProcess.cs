@@ -115,7 +115,6 @@ namespace Model
         /// <param name="heatCapacityRatio">Показатель адиабаты</param>
         /// <param name="paramName">Имя параметра</param>
         /// <returns>Показатель адиабаты</returns>
-        /// TODO: XML - решено
         public static double CheckAdiabatic(double heatCapacityRatio,
             string paramName)
         {

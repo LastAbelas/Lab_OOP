@@ -260,36 +260,35 @@ namespace View
         /// </summary>
         private IProcessBase AddIsobaricWork()
         {
-            //TODO: RSDN? - исправил
             var classProcess = new IsobaricProcess();
             var actions = new List<Action>()
-                {
-                new Action(() =>
+            {
+                () =>
                 {
                     classProcess.InitialTemperature =
-                    CheckStringNullOrEmpty
-                    (maskedTextBoxInitialTemperature.Text,
-                    "Initial Temperature");
-                }),
-                new Action(() =>
+                        CheckStringNullOrEmpty
+                        (maskedTextBoxInitialTemperature.Text,
+                            "Initial Temperature");
+                },
+                () =>
                 {
                     classProcess.FinalTemperature =
-                    CheckStringNullOrEmpty
-                    (maskedTextBoxFinalTemperature.Text,
-                    "Final Temperature");
-                }),
-                new Action(() =>
+                        CheckStringNullOrEmpty
+                        (maskedTextBoxFinalTemperature.Text,
+                            "Final Temperature");
+                },
+                () =>
                 {
                     classProcess.GasMass =
-                    CheckStringNullOrEmpty(maskedTextBoxGasMass.Text,
-                    "Gas Mass");
-                }),
-                new Action(() =>
+                        CheckStringNullOrEmpty(maskedTextBoxGasMass.Text,
+                            "Gas Mass");
+                },
+                () =>
                 {
                     classProcess.MolarMass =
-                    CheckStringNullOrEmpty(maskedTextBoxMolarMass.Text,
-                    "Molar Mass");
-                }),
+                        CheckStringNullOrEmpty(maskedTextBoxMolarMass.Text,
+                            "Molar Mass");
+                },
             };
             actions.ForEach(SetValue);
             return classProcess;
@@ -343,7 +342,6 @@ namespace View
         /// </summary>
         private IProcessBase AddAdiabaticlWork()
         {
-            //TODO: RSDN - исправил
             var classProcess = new AdiabaticProcess();
             var actions = new List<Action>()
                 {
@@ -353,24 +351,24 @@ namespace View
                         CheckStringNullOrEmpty(InitialVolumeTextBox.Text,
                             "Initial Volume");
                 },
-                new Action(() =>
+                () =>
                 {
                     classProcess.FinalVolume =
-                    CheckStringNullOrEmpty(maskedTextBoxFinalVolume.Text,
-                    "Final Volume");
-                }),
-                new Action(() =>
+                        CheckStringNullOrEmpty(maskedTextBoxFinalVolume.Text,
+                            "Final Volume");
+                },
+                () =>
                 {
                     classProcess.Pressure =
-                    CheckStringNullOrEmpty(maskedTextBoxPressure.Text,
-                    "Pressure");
-                }),
-                new Action(() =>
+                        CheckStringNullOrEmpty(maskedTextBoxPressure.Text,
+                            "Pressure");
+                },
+                () =>
                 {
                     classProcess.HeatCapacityRatio =
-                    CheckStringNullOrEmpty(maskedTextBoxHeatCapacityRatio.Text,
-                    "Heat Capacity Ratio");
-                }),
+                        CheckStringNullOrEmpty(maskedTextBoxHeatCapacityRatio.Text,
+                            "Heat Capacity Ratio");
+                },
             };
             actions.ForEach(SetValue);
             return classProcess;
